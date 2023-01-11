@@ -1,4 +1,4 @@
-@use 'index';
-@use 'login';
-@use 'browse';
-@use 'basket';
+@forward 'index';
+@forward 'login';
+@forward 'browse';
+@forward 'basket';
