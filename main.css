@@ -10785,7 +10785,11 @@ textarea.form-control-lg {
   background-color: #212121;
 }
 
-.butt {
+a {
+  color: inherit;
+  text-decoration: none;
+}
+a .butt {
   border: none;
   border-radius: 0.5px;
   box-shadow: -2px 3px 1px black;
@@ -10798,7 +10802,7 @@ textarea.form-control-lg {
   font-family: "Source Code Pro", sans-serif;
   color: black;
 }
-.butt:hover {
+a .butt:hover {
   background: #F6B93B;
   color: black;
 }
@@ -10810,6 +10814,11 @@ textarea.form-control-lg {
 
 .bg-dark {
   background-color: #212121;
+}
+
+.top-deals {
+  border-bottom: 2px;
+  border-color: #F6B93B;
 }
 
 /*# sourceMappingURL=main.css.map */
