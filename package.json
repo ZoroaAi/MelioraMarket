@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/ZoroaAi/MelioraMarket/issues"
   },
-  "homepage": "https://github.com/ZoroaAi/MelioraMarket#readme",
-  "dependencies": {
-    "bootstrap": "^5.2.3"
-  }
+  "homepage": "https://github.com/ZoroaAi/MelioraMarket#readme"
 }
