@@ -46,8 +46,8 @@
   border: none;
   outline: none;
   border-radius: 2rem;
-  color: var(--color-black);
-  background: var(--color-light);
+  color: #fefefe;
+  background: #545454;
   text-transform: unset;
   text-rendering: optimizeLegibility;
 }
@@ -149,7 +149,7 @@
   height: auto;
   padding: 0.35rem 1.25rem;
   outline: none;
-  border: 2px solid #CBCBCB;
+  border: 1px solid #CBCBCB;
   border-radius: 2rem;
   color: #CBCBCB;
   background: #212121;
@@ -175,6 +175,7 @@
   align-items: center;
   height: 50px;
   overflow: hidden;
+  z-index: 1000;
 }
 .navbar img {
   height: 16px;

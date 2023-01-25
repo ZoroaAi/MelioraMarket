@@ -47,8 +47,8 @@
 				border: none;
 				outline: none;
 				border-radius: 2rem;
-				color: var(--color-black);
-				background: var(--color-light);
+				color: lighten($color: variables.$text-dark-mode, $amount: 20%);
+				background: lighten($color: variables.$dark, $amount: 20%);
 				text-transform: unset;
 				text-rendering: optimizeLegibility;
 			}
@@ -167,7 +167,7 @@
         height: auto;
         padding: 0.35rem 1.25rem;
         outline: none;
-        border: 2px solid variables.$text-dark-mode;
+        border: 1px solid variables.$text-dark-mode;
         border-radius: 2rem;
         color: variables.$text-dark-mode;
         background: variables.$dark;
