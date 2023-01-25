@@ -9,6 +9,7 @@
         width: 100%;
         padding: 0 2rem;
         margin: 0 auto;
+        transform: translateY(-50px);
     }
     .wrapper {
 		max-width: 28rem;
@@ -102,22 +103,81 @@
 	&-large {
 		font-size: 2rem;
 		font-weight: 600;
-		color: variables.$secondary;
+		color: variables.$primary;
+        text-shadow: -4px 4px #000000;;
 	}
 
 	&-normal {
 		font-size: 1rem;
 		font-weight: 400;
-		color: variables.$secondary;
+		color: variables.$text-dark-mode;
 	}
 
 	&-links {
 		font-size: 1rem;
 		font-weight: 400;
-		color: var(--color-blue);
-
+		color: variables.$primary;
 		&:hover {
 			text-decoration: underline;
 		}
 	}
+}
+
+// Form Break
+.striped {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+
+    &-line {
+        flex: auto;
+        flex-basis: auto;
+        border: none;
+        outline: none;
+        height: 2px;
+        background: variables.$text-dark-mode;
+    }
+
+    &-text {
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: inherit;
+        margin: 0 1rem;
+    }
+}
+
+// Methods
+.method {
+    &-control {
+        margin-bottom: 1rem;
+    }
+
+    &-action {
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 500;
+        line-height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        padding: 0.35rem 1.25rem;
+        outline: none;
+        border: 2px solid variables.$text-dark-mode;
+        border-radius: 2rem;
+        color: variables.$text-dark-mode;
+        background: variables.$dark;
+        text-decoration: none;
+        text-transform: capitalize;
+        text-rendering: optimizeLegibility;
+        transition: all 0.35s ease;
+
+        &:hover {
+            background: lighten($color: variables.$dark, $amount: 50%);
+        }
+    }
 }
