@@ -1,6 +1,114 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
 @import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/source-code-pro.min.css");
 @import url("https://fonts.cdnfonts.com/css/ink-free");
+.main .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 80rem;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 2rem;
+  margin: 0 auto;
+}
+.main .wrapper {
+  max-width: 28rem;
+  width: 100%;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  border: none;
+  outline: none;
+  border-radius: 0.25rem;
+  color: #F6B93B;
+  background: #212121;
+  box-shadow: 16px 16px 29px #161616, -16px -16px 29px #2c2c2c;
+}
+.main .wrapper .form {
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+}
+.main .wrapper .form .input-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.main .wrapper .form .input-field {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: inherit;
+  width: 100%;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  outline: none;
+  border-radius: 2rem;
+  color: var(--color-black);
+  background: var(--color-light);
+  text-transform: unset;
+  text-rendering: optimizeLegibility;
+}
+.main .wrapper .form .input-submit {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: inherit;
+  cursor: pointer;
+  min-width: 40%;
+  height: auto;
+  padding: 0.65rem 1.25rem;
+  border: none;
+  outline: none;
+  color: black;
+  text-transform: capitalize;
+  text-rendering: optimizeLegibility;
+}
+
+.logo-google {
+  font-size: 1.65rem;
+  line-height: inherit;
+  margin-right: 0.5rem;
+  fill: red;
+}
+.logo-facebook {
+  font-size: 1.65rem;
+  line-height: inherit;
+  margin-right: 0.5rem;
+  fill: blue;
+}
+.logo-apple {
+  font-size: 1.65rem;
+  line-height: inherit;
+  margin-right: 0.5rem;
+  fill: #CBCBCB;
+}
+
+.text {
+  font-family: inherit;
+  line-height: inherit;
+  text-transform: unset;
+  text-rendering: optimizeLegibility;
+}
+.text-large {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #CBCBCB;
+}
+.text-normal {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #CBCBCB;
+}
+.text-links {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-blue);
+}
+.text-links:hover {
+  text-decoration: underline;
+}
+
 .nav-wrapper {
   width: 100%;
   position: sticky;
@@ -81,9 +189,61 @@ input {
   padding: 5px;
 }
 
+/* Media Queries */
+/* Mobile Devices - Phones/Tablets */
+@media only screen and (max-width: 720px) {
+  .features {
+    flex-direction: column;
+    padding: 50px;
+  }
+  /* MOBILE HEADINGS */
+  h1 {
+    font-size: 1.9rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  p {
+    font-size: 0.8rem;
+  }
+  /* MOBILE NAVIGATION */
+  .navbar ul {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: start;
+    top: 55px;
+    background-color: #212121;
+    width: 100%;
+    height: calc(100vh - 55px);
+    transform: translate(-101%);
+    text-align: center;
+    overflow: hidden;
+  }
+  .navbar li {
+    padding: 15px;
+  }
+  .navbar li:first-child {
+    margin-top: 50px;
+  }
+  .navbar li a {
+    font-size: 1rem;
+  }
+  .menu-toggle, .bar {
+    display: block;
+    cursor: pointer;
+  }
+  .mobile-nav {
+    transform: translate(0%) !important;
+  }
+}
 * {
   font-family: "Inter", sans-serif;
   color: #F6B93B;
+}
+
+a {
+  text-decoration: none;
 }
 
 p {
@@ -101,11 +261,13 @@ p {
 .butt {
   background: #f6b93b;
   border-radius: 5px;
-  box-shadow: -4px 4px #333333;
+  box-shadow: -4px 4px #000000;
   padding: 20px 45px;
   color: #ffffff;
   display: inline-block;
   text-align: center;
+  font-family: "Source Code Pro", sans-serif;
+  color: black;
 }
 
 /*# sourceMappingURL=main.css.map */

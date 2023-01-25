@@ -1,11 +1,13 @@
 @use "helpers/variables";
 @use "helpers/functions";
-@use "components/nav";
+@use "components/comps";
 
 *{
     @include functions.applyInterFont(variables.$primary);
 }
-
+a{
+    text-decoration: none;
+}
 p{
     color: variables.$secondary;
 }
@@ -22,9 +24,10 @@ $primary: variables.$primary;
 .butt{
     background: #f6b93b;
     border-radius: 5px;
-    box-shadow:    -4px 4px #333333;
+    box-shadow:    -4px 4px #000000;
     padding:       20px 45px;
     color:         #ffffff;
     display:       inline-block;
     text-align:    center;
+    @include functions.applySourceFont(black)
 }
