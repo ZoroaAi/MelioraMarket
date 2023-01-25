@@ -84,64 +84,105 @@ input {
     padding: 5px;
 }
 
+/* MOBILE MENU & ANIMATION */
+
+.menu-toggle .bar{
+    width: 25px;
+    height: 3px;
+    background-color: #3f3f3f;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle {
+    justify-self: end;
+    margin-right: 25px;
+    display: none;
+}
+
+.menu-toggle:hover{
+    cursor: pointer;
+}
+
+#mobile-menu.is-active .bar:nth-child(2){
+    opacity: 0;
+}
+
+#mobile-menu.is-active .bar:nth-child(1){
+    transform: translateY(8px) rotate(45deg);
+}
+
+#mobile-menu.is-active .bar:nth-child(3){
+transform: translateY(-8px) rotate(-45deg);
+}
+
 /* Media Queries */
 
 /* Mobile Devices - Phones/Tablets */
 
 @media only screen and (max-width: 720px) { 
-.features {
-    flex-direction: column;
-    padding: 50px;
-}
+    .features {
+        flex-direction: column;
+        padding: 50px;
+    }
 
-/* MOBILE HEADINGS */
+    /* MOBILE HEADINGS */
 
-h1 {
-    font-size: 1.9rem;
-}
+    h1 {
+        font-size: 1.9rem;
+    }
 
-h2 {
-    font-size: 1rem;
-}
+    h2 {
+        font-size: 1rem;
+    }
 
-p {
-    font-size: 0.8rem;
-}
+    p {
+        font-size: 0.8rem;
+    }
 
-/* MOBILE NAVIGATION */
-    
-.navbar ul {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    justify-content: start;
-    top: 55px;
-    background-color: variables.$dark;
-    width: 100%;
-    height: calc(100vh - 55px);
-    transform: translate(-101%);
-    text-align: center;
-    overflow: hidden;
-}
+    /* MOBILE NAVIGATION */
+        
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        justify-content: start;
+        top: 55px;
+        background-color: variables.$dark;
+        width: 100%;
+        height: calc(100vh - 55px);
+        transform: translate(-101%);
+        text-align: center;
+        overflow: hidden;
+    }
 
-.navbar li {
-    padding: 15px;
-}
+    .navbar li {
+        padding: 15px;
+        &:first-child{
+            margin-top: 50px;
+        }
+        a{
+            font-size: 1rem;
+        }
+    }
+        
+    .menu-toggle, .bar {
+        display: block;
+        cursor: pointer;
+    }
 
-.navbar li:first-child {
-    margin-top: 50px;
-}
+    .mobile-nav {
+        transform: translate(0%)!important;
+    }
 
-.navbar li a {
-    font-size: 1rem;
-}
-    
-.menu-toggle, .bar {
-    display: block;
-    cursor: pointer;
-}
-
-.mobile-nav {
-    transform: translate(0%)!important;
-}
+    /* SEARCH DISABLED ON MOBILE */
+    #search-icon {
+        display: none;
+    }
+      
+    .search-input {
+      display: none;
+    }
 }

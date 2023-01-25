@@ -177,7 +177,7 @@
         transition: all 0.35s ease;
 
         &:hover {
-            background: lighten($color: variables.$dark, $amount: 50%);
+            background: lighten($color: variables.$dark, $amount: 20%);
         }
     }
 }
