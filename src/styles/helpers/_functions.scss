@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap'); // Inter
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/source-code-pro.min.css"); // Source Code Pro
+@import url('https://fonts.cdnfonts.com/css/ink-free'); // Ink Free
+
+// Apply Fonts:
+@mixin applyInterFont($colour){
+    font-family: "Inter", sans-serif;
+    color: $colour;
+}
+@mixin applyInkFont($colour){
+    font-family: "Ink Free", sans-serif;
+    color: $colour;
+}
+@mixin applySourceFont($colour){
+    font-family: "Source Code Pro", sans-serif;
+    color: $colour;
+}

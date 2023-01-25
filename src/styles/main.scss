@@ -1,10 +1,30 @@
+@use "helpers/variables";
+@use "helpers/functions";
+@use "components/nav";
 
-// Colours:
-$text_colour: #CBCBCB;
-$button_colour: #F6B93B;
-$background_colour: #212121;
+*{
+    @include functions.applyInterFont(variables.$primary);
+}
 
+p{
+    color: variables.$secondary;
+}
+.bg-body{
+    background-color: variables.$dark;
+}
 
-#butt{
-    background-color: #212121;
+$primary: variables.$primary;
+
+// @import "../../node_modules/bootstrap/scss/variables";
+#body{
+    background-color: variables.$dark;
+}
+.butt{
+    background: #f6b93b;
+    border-radius: 5px;
+    box-shadow:    -4px 4px #333333;
+    padding:       20px 45px;
+    color:         #ffffff;
+    display:       inline-block;
+    text-align:    center;
 }

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="styles/main.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script type="module" src="scripts/app.js"></script>
 </head>
 
 <body id="body">
@@ -74,33 +73,60 @@
     </svg>
 
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
-                aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                <a class="navbar-brand" href="#">Hidden brand</a>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    <button class="btn btn-outline-success" type="submit">Login</button>
-                </form>
-            </div>
+    <div class="nav-wrapper">
+      <nav class="navbar">
+        <img src="#" alt="Company Logo">
+        <div class="menu-toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
-    </nav>
+        <ul class="nav no-search">
+          <li class="nav-item"><a href="#">Home</a></li>
+          <li class="nav-item"><a href="#">About</a></li>
+          <li class="nav-item"><a href="#">Work</a></li>
+          <li class="nav-item"><a href="#">Careers</a></li>
+          <li class="nav-item"><a href="#">Contact Us</a></li>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="search-icon bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+          <input class="search-input" type="text" placeholder="Search..">
+        </ul>
+      </nav>
+    </div>
+    <!-- <nav class="navbar navbar-expand-lg bg-light rounded" aria-label="Thirteenth navbar example">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample11" aria-controls="navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
+            <a class="navbar-brand col-lg-3 me-0" href="#">Centered nav</a>
+            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="d-lg-flex col-lg-3 justify-content-lg-end">
+              <button class="butt btn">Button</button>
+            </div>
+          </div>
+        </div>
+      </nav> -->
 
     <!-- Hero -->
     <div class="px-4 pt-5 my-5 text-center border-bottom">
@@ -110,8 +136,7 @@
                 most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system,
                 extensive prebuilt components, and powerful JavaScript plugins.</p>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <button id="butt" type="button" class="btn btn-primary btn-lg px-4 me-sm-3">Primary button</button>
-                <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
+                <button id="butt" type="button" class="butt btn btn-lg px-4 me-sm-3">Primary button</button>
             </div>
         </div>
         <div class="overflow-hidden" style="max-height: 30vh;">
@@ -121,16 +146,52 @@
             </div>
         </div>
     </div>
+    
+    <!-- Features -->
+    <div class="container px-4 py-5" id="icon-grid">
+        <h2 class="pb-2 border-bottom">Icon grid</h2>
+    
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#bootstrap"/></svg>
+            <div>
+              <h3 class="fw-bold mb-0 fs-4">Featured title</h3>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#cpu-fill"/></svg>
+            <div>
+              <h3 class="fw-bold mb-0 fs-4">Featured title</h3>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#calendar3"/></svg>
+            <div>
+              <h3 class="fw-bold mb-0 fs-4">Featured title</h3>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+          <div class="col d-flex align-items-start">
+            <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em"><use xlink:href="#home"/></svg>
+            <div>
+              <h3 class="fw-bold mb-0 fs-4">Featured title</h3>
+              <p>Paragraph of text beneath the heading to explain the heading.</p>
+            </div>
+          </div>
+        </div>
+    </div>
 
-
+    <!-- Top Deals -->
     <div class="container px-4 py-5" id="custom-cards">
-        <h2 class="pb-2 border-bottom">Custom cards</h2>
+        <h2 class="pb-2 border-bottom">Top Deals Today</h2>
 
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
                     style="background-image: url('unsplash-photo-1.jpg');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
                         <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Short title, long jacket</h3>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
@@ -157,7 +218,7 @@
             <div class="col">
                 <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
                     style="background-image: url('unsplash-photo-2.jpg');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
                         <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines
                         </h3>
                         <ul class="d-flex list-unstyled mt-auto">
@@ -211,6 +272,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <div class="container">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
           <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc</p>
@@ -235,6 +297,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
         integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
         crossorigin="anonymous"></script>
+    <script type="module" src="scripts/app.js"></script>
 </body>
 
 </html>
