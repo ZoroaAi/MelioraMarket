@@ -1,6 +1,6 @@
 @use "../helpers/variables";
 .main{
-    .container{
+    .login-container{
         display: flex;
         justify-content: center;
         align-items: center;
@@ -9,6 +9,8 @@
         width: 100%;
         padding: 0 2rem;
         margin: 0 auto;
+        z-index: -1;
+        position: fixed;
         transform: translateY(-50px);
     }
     .wrapper {
