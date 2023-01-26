@@ -1,7 +1,7 @@
 
 export function openCloseSearch(){
     searchButt = document.querySelector("#search-icon");
-    searchButt.click(()=>{
+    searchButt.onClick(()=>{
         // Toggle the "search" and "no-search" classes on the "nav" element
         $(".nav").toggleClass("search");
         $(".nav").toggleClass("no-search");
@@ -12,7 +12,7 @@ export function openCloseSearch(){
 
 export function openCloseMenu(){
     menuButt = document.querySelector(".menu-toggle");
-    menuButt.click(()=>{
+    menuButt.onClick(()=>{
         // Toggle the "mobile-nav" class on the "nav" element
         $(".nav").toggleClass("mobile-nav");
         // Toggle the "is-active" class on the clicked element

@@ -3,6 +3,7 @@
 @use "components/comps";
 
 *{
+    box-sizing: border-box;
     @include functions.applyInterFont(variables.$primary);
 }
 a{
@@ -22,12 +23,17 @@ $primary: variables.$primary;
     background-color: variables.$dark;
 }
 .butt{
-    background: #f6b93b;
+    font-weight: 600;
+    background-color: #f6b93b;
     border-radius: 5px;
     box-shadow:    -4px 4px #000000;
     padding:       20px 45px;
-    color:         #ffffff;
+    color:         black;
     display:       inline-block;
     text-align:    center;
     @include functions.applySourceFont(black)
+}
+
+.card-text{
+    color: variables.$text-dark-mode;
 }
