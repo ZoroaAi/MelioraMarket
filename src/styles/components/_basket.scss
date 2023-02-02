@@ -1,1 +1,38 @@
+@use "../helpers/variables";
 
+.parent{
+    margin: 0 3.5em;
+}
+
+.info-header{
+    margin-top: 2em;
+    .info{
+        justify-content: space-between;
+        .items-info{
+            display: flex;
+            flex-direction: row;
+        }
+        .stores{
+            display: flex;
+            align-items: baseline;
+        }
+        .items{
+            &-total{
+                margin: 0 3em;
+                &-price{
+                    margin: 0 2.5em;
+                }
+            }
+        }
+    }
+
+}
+
+#basket-item{
+    box-shadow: 5px 5px 23px #212121, -5px -5px 23px #212121;
+    background: variables.$dark;
+    transition: all 0.5 ease;
+    &:hover{
+        box-shadow: 5px 5px 23px #1c1c1c, -5px -5px 23px #262626;
+    }
+}
