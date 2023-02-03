@@ -20,4 +20,4 @@ def login():
                 return redirect(url_for('views.home'))
             else:
                 flash('Incorrect Password, Try Again', category='Error')
-    return render_template('login.html', user=current_user)
+    return render_template('/login.html', user=current_user)

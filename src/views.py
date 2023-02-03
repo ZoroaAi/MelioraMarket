@@ -8,14 +8,10 @@ views = Blueprint('views', __name__)
 def home():
     return render_template('home.html', user = current_user)
 
-@views.route('/login', methods=['GET','POST'])
-def login():
-    return render_template('login.html', user = current_user)
-
 @views.route('/browse', methods=['GET','POST'])
 def browse():
-    return render_template('browse.html', user = current_user)
+    return render_template('browse.html')
 
 @views.route('/basket', methods=['GET','POST'])
 def basket():
-    return render_template('basket.html', user = current_user)
+    return render_template('basket.html')
