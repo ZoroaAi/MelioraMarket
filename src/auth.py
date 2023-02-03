@@ -24,7 +24,34 @@ def login():
 
 @auth.route('/sign-up')
 def sign_up():
-    return render_template('sign-up.html')
+    # Form Validation
+    if request.method == 'POST':
+        email = request.form.get('email')
+        firstName = request.form.get('firstName')
+        password1 = request.form.get('password1')
+        password2 = request.form.get('password2')
+        
+        user = User.query.filter_by(email=email).first()
+        if user:
+            flash('Email is already in use', category='Error')
+        elif len(email)<7:
+            flash('Email must be longer than 7 characters', category='Error')
+        elif len(firstName) < 2:
+            flash('First Name must be longer than 2 characters', category='Error')
+        elif password1 != password2:
+            flash('Passwords does not match', category='Error')
+        elif len(password1) < 7:
+            flash('Password must be longer than 6 characters', category='Error')
+        else:
+            # Adding user to database:
+            new_user = User(email=email, firstName=firstName, password = generate_password_hash(password1, method='sha256'))
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(user, remember= True)
+            flash('Account has been created!', category='Success')
+            return redirect(url_for('views.home'))
+        
+    return render_template('sign-up.html', user= current_user)
 
 @auth.route('/logout')
 def logout():
