@@ -21,3 +21,14 @@ def login():
             else:
                 flash('Incorrect Password, Try Again', category='Error')
     return render_template('/login.html', user=current_user)
+
+@auth.route('/sign-up')
+def sign_up():
+    return render_template('sign-up.html')
+
+@auth.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('views.home'))
+
+
