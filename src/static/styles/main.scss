@@ -34,6 +34,10 @@ $primary: variables.$primary;
     @include functions.applySourceFont(black)
 }
 
+.browse-cards{
+    object-fit: cover;
+}
+
 .card-text{
     color: variables.$text-dark-mode;
 }

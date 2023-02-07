@@ -333,38 +333,12 @@ input {
     display: none;
   }
 }
-.parent {
-  margin: 0 3.5em;
+section {
+  background-color: #212121;
 }
 
-.info-header {
-  margin-top: 2em;
-}
-.info-header .info {
-  justify-content: space-between;
-}
-.info-header .info .items-info {
-  display: flex;
-  flex-direction: row;
-}
-.info-header .info .stores {
-  display: flex;
-  align-items: baseline;
-}
-.info-header .info .items-total {
-  margin: 0 3em;
-}
-.info-header .info .items-total-price {
-  margin: 0 2.5em;
-}
-
-#basket-item {
-  box-shadow: 5px 5px 23px #212121, -5px -5px 23px #212121;
-  background: #212121;
-  transition: all 0.5 ease;
-}
-#basket-item:hover {
-  box-shadow: 5px 5px 23px #1c1c1c, -5px -5px 23px #262626;
+h1 {
+  color: #F6B93B;
 }
 
 * {
@@ -400,6 +374,10 @@ p {
   text-align: center;
   font-family: "Source Code Pro", sans-serif;
   color: black;
+}
+
+.browse-cards {
+  object-fit: cover;
 }
 
 .card-text {
