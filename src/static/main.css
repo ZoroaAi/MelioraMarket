@@ -393,4 +393,16 @@ p {
   width: 100% \9 ;
 }
 
+.item-info {
+  background-color: white;
+}
+.item-info button {
+  background: none;
+  border: none;
+}
+.item-info small {
+  font-size: medium;
+  font-weight: 600;
+}
+
 /*# sourceMappingURL=main.css.map */
