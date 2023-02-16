@@ -374,6 +374,10 @@ p {
   text-align: center;
   font-family: "Source Code Pro", sans-serif;
   color: black;
+  transition: 0.5s ease-in-out;
+}
+.butt :hover {
+  transform: scale(1.5);
 }
 
 .browse-cards {
@@ -382,6 +386,11 @@ p {
 
 .card-text {
   color: #CBCBCB;
+}
+
+.heroImg {
+  height: auto;
+  width: 100% \9 ;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -15,10 +15,12 @@ class Product(db.Model):
     # Product info
     id = db.Column(db.Integer, primary_key = True)
     basket = db.Column(db.Integer, db.ForeignKey('user.id'))
-    p_name = db.Column(db.String(150))
-    p_price = db.Column(db.Float(1000))
+    name = db.Column(db.String(150))
+    price = db.Column(db.Float(1000))
+    img = db.Column(db.String(120), unique = True)
     
-class Basket(db.Model):
+class BasketItem(db.Model):
     # Basket info
     id = db.Column(db.Integer, primary_key = True)
-    product = db.relationship('Product')
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    

@@ -1,6 +1,7 @@
 from flask import Blueprint ,render_template, request, flash
 from flask_login import login_required, current_user
 from . import db
+from .models import Product, BasketItem
 import json
 
 views = Blueprint('views', __name__)
@@ -16,5 +17,17 @@ def browse():
     return render_template('browse.html', data = data)
 
 @views.route('/basket', methods=['GET','POST'])
-def basket():
-    return render_template('basket.html')
+def basket(product_id):
+    product = Product.query.filter(Product.id == product_id)
+    basketItem = BasketItem(product = product)
+    db.session.add(basketItem)
+    db.session.commit()
+    return render_template('basket.html', product = product)
+
+def getProductItem():
+    itemId = Product.id
+    productName = Product.name
+    productName = BasketItem(product_id = itemId)
+    db.session.add(Product)
+    db.session.commit()
+    

@@ -31,8 +31,18 @@ $primary: variables.$primary;
     color:         black;
     display:       inline-block;
     text-align:    center;
-    @include functions.applySourceFont(black)
+    @include functions.applySourceFont(black);
+    transition: 0.5s ease-in-out;
+    :hover{
+        transform: scale(1.5);
+    }
 }
+// .butt-hover{
+//     transition: 0.5s ease-in-out;
+//     :hover{
+//         transform: scale(1.5);
+//     }
+// }
 
 .browse-cards{
     object-fit: cover;
@@ -40,4 +50,9 @@ $primary: variables.$primary;
 
 .card-text{
     color: variables.$text-dark-mode;
+}
+
+.heroImg{
+    height: auto;
+    width: 100% \9;
 }
