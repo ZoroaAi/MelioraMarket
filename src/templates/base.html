@@ -23,10 +23,10 @@
         <span class="bar"></span>
       </div>
       <ul class="nav no-search">
-        <li class="nav-item"><a id="home" href="home">Home</a></li>
-        <li class="nav-item"><a id="browse" href="/browse">Browse</a></li>
-        <li class="nav-item"><a id="login" href="login">Login</a></li>
-        <a id="basket" href="basket">
+        <li class="nav-item"><a id="home" href="{{url_for('views.home')}}">Home</a></li>
+        <li class="nav-item"><a id="browse" href="{{url_for('views.browse')}}">Browse</a></li>
+        <li class="nav-item"><a id="login" href="{{url_for('auth.login')}}">Login</a></li>
+        <a id="basket" href="{{url_for('views.basket')}}">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket3-fill"
             viewBox="0 0 16 16">
             <path
@@ -35,7 +35,7 @@
         </a>
 
         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
-          class="search-icon bi bi-search" onClick="openCloseSearch()" viewBox="0 0 16 16">
+          class="search-icon bi bi-search" onclick="openCloseSearch()" viewBox="0 0 16 16">
           <path
             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
         </svg>

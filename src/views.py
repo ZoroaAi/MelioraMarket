@@ -17,12 +17,8 @@ def browse():
     return render_template('browse.html', data = data)
 
 @views.route('/basket', methods=['GET','POST'])
-def basket(product_id):
-    product = Product.query.filter(Product.id == product_id)
-    basketItem = BasketItem(product = product)
-    db.session.add(basketItem)
-    db.session.commit()
-    return render_template('basket.html', product = product)
+def basket():
+    return render_template('basket.html')
 
 def getProductItem():
     itemId = Product.id
