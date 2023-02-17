@@ -5,6 +5,7 @@
     width: 100%;
     position: sticky;
     top: 0;
+    z-index: 1000;
     background-color: variables.$dark;
 }
 
@@ -14,7 +15,6 @@
     // align-items: center;
     height: 50px;
     overflow: hidden;
-    z-index: 1000;
     img{
         height: 1.5em;
         width: auto;

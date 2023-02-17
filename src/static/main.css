@@ -167,6 +167,7 @@
   width: 100%;
   position: sticky;
   top: 0;
+  z-index: 1000;
   background-color: #212121;
 }
 
@@ -174,7 +175,6 @@
   grid-template-columns: 1fr 3fr;
   height: 50px;
   overflow: hidden;
-  z-index: 1000;
 }
 .navbar img {
   height: 1.5em;
@@ -342,6 +342,7 @@ h1 {
 }
 
 .browse-cards {
+  min-width: 360px;
   object-fit: cover;
 }
 
@@ -359,6 +360,7 @@ h1 {
 
 .img-wrapper {
   position: relative;
+  background-color: white;
 }
 .img-wrapper .item-name {
   position: absolute;
