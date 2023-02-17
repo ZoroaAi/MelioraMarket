@@ -341,6 +341,32 @@ h1 {
   color: #F6B93B;
 }
 
+.browse-cards {
+  object-fit: cover;
+}
+
+.item-info {
+  background-color: white;
+}
+.item-info button {
+  background: none;
+  border: none;
+}
+.item-info small {
+  font-size: medium;
+  font-weight: 600;
+}
+
+.img-wrapper {
+  position: relative;
+}
+.img-wrapper .item-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 * {
   box-sizing: border-box;
   font-family: "Inter", sans-serif;
@@ -380,29 +406,9 @@ p {
   transform: scale(1.5);
 }
 
-.browse-cards {
-  object-fit: cover;
-}
-
-.card-text {
-  color: #CBCBCB;
-}
-
 .heroImg {
   height: auto;
   width: 100% \9 ;
-}
-
-.item-info {
-  background-color: white;
-}
-.item-info button {
-  background: none;
-  border: none;
-}
-.item-info small {
-  font-size: medium;
-  font-weight: 600;
 }
 
 /*# sourceMappingURL=main.css.map */

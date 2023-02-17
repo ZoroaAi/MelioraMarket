@@ -44,27 +44,7 @@ $primary: variables.$primary;
 //     }
 // }
 
-.browse-cards{
-    object-fit: cover;
-}
-
-.card-text{
-    color: variables.$text-dark-mode;
-}
-
 .heroImg{
     height: auto;
     width: 100% \9;
-}
-
-.item-info{
-    background-color: white;
-    button{
-        background: none;
-        border: none;
-    }
-    small{
-        font-size: medium;
-        font-weight: 600;
-    }
 }

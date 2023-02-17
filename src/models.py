@@ -6,7 +6,7 @@ from sqlalchemy.sql import func
 class User(db.Model, UserMixin):
     # User info
     id = db.Column(db.Integer, primary_key=True)
-    notes = db.relationship('Basket')
+    basket = db.relationship('Basket')
     email = db.Column(db.String(150), unique = True)
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
@@ -18,6 +18,7 @@ class Product(db.Model):
     name = db.Column(db.String(150))
     price = db.Column(db.Float(1000))
     img = db.Column(db.String(120), unique = True)
+    quantity = db.Column(db.Integer)
     
 class BasketItem(db.Model):
     # Basket info

@@ -1,0 +1,25 @@
+.browse-cards{
+    object-fit: cover;
+}
+
+.item-info{
+    background-color: white;
+    button{
+        background: none;
+        border: none;
+    }
+    small{
+        font-size: medium;
+        font-weight: 600;
+    }
+}
+
+.img-wrapper{
+    position: relative;
+    .item-name{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
