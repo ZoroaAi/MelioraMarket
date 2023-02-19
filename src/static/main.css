@@ -344,6 +344,7 @@ h1 {
 .browse-cards {
   min-width: 360px;
   object-fit: cover;
+  margin-top: 0;
 }
 .browse-cards .item-card {
   background-color: white;
@@ -373,6 +374,16 @@ h1 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.form .search-icon {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #9ca3af;
+}
+.form input {
+  text-align: center;
 }
 
 * {
