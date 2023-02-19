@@ -1,6 +1,9 @@
 .browse-cards{
     min-width: 360px;
     object-fit: cover;
+    .item-card{
+        background-color: white;
+    }
 }
 
 .item-info{
@@ -13,7 +16,9 @@
         font-size: medium;
         font-weight: 600;
     }
-
+    input{
+        width: 3rem;
+    }
 }
 
 .img-wrapper{

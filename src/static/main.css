@@ -345,6 +345,9 @@ h1 {
   min-width: 360px;
   object-fit: cover;
 }
+.browse-cards .item-card {
+  background-color: white;
+}
 
 .item-info {
   background-color: white;
@@ -356,6 +359,9 @@ h1 {
 .item-info small {
   font-size: medium;
   font-weight: 600;
+}
+.item-info input {
+  width: 3rem;
 }
 
 .img-wrapper {
