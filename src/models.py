@@ -1,6 +1,9 @@
 from . import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField, PasswordField
+from wtforms.validators import DataRequired, Length
 
 # Database Models
 class User(db.Model, UserMixin):
@@ -24,4 +27,9 @@ class BasketItem(db.Model):
     # Basket info
     id = db.Column(db.Integer, primary_key = True)
     product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
-    
+
+
+# Forms
+class SearchedItems(FlaskForm):
+    searched = StringField("searched", validator=[DataRequired()])
+    submit = SubmitField()

@@ -1,9 +1,12 @@
 
 .form{
+    display: flex;
+    position: relative;
     .search-icon{
         position: absolute;
-        top:20px;
-        left: 20px;
+        justify-content: flex-end;
+        top: 9px;
+        left: -7px;
         color: #9ca3af;
     }
     input{

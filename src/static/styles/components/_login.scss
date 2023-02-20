@@ -30,6 +30,9 @@
 			height: auto;
 			margin-top: 2rem;
 
+            display: flex;
+            flex-direction: column;
+
 			.input-control {
 				display: flex;
 				align-items: center;

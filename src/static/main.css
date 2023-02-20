@@ -29,6 +29,8 @@
   width: 100%;
   height: auto;
   margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 .main .wrapper .form .input-control {
   display: flex;
@@ -376,10 +378,15 @@ h1 {
   transform: translate(-50%, -50%);
 }
 
+.form {
+  display: flex;
+  position: relative;
+}
 .form .search-icon {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  justify-content: flex-end;
+  top: 9px;
+  left: -7px;
   color: #9ca3af;
 }
 .form input {

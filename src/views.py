@@ -14,6 +14,8 @@ def home():
 def browse():
     with open('src/test_data/tesco_test.json') as json_file:
         data = json.load(json_file)
+    
+        
     return render_template('browse.html', data = data, addToBasket = addToBasket)
 def addToBasket():
     if request.method == 'POST':
@@ -27,7 +29,11 @@ def addToBasket():
         # Add Product to Database
         db.session.add(new_item)
         db.session.commit(new_item)
-        
+  
+@views.route('search', methods=['POST'])
+def search():
+    
+    pass   
         
 
 @views.route('/basket', methods=['GET','POST'])
