@@ -15,25 +15,34 @@ def browse():
     with open('src/test_data/tesco_test.json') as json_file:
         data = json.load(json_file)
     
-        
-    return render_template('browse.html', data = data, addToBasket = addToBasket)
-def addToBasket():
-    if request.method == 'POST':
-        # Get Product from HTML
-        # name = 
-        image = request.form.get('image')
-        price = request.form.get('price')
-        quant = request.form.get('quantity')
-        
-        new_item = Product(img=image,price=price,quantity=quant)
-        # Add Product to Database
+    for item in data:
+        new_item = Product(title = item['title'], price = item['unit_price'], img = item['image'], category = item['category'])
         db.session.add(new_item)
-        db.session.commit(new_item)
-  
-@views.route('search', methods=['POST'])
-def search():
+    db.session.commit()
     
-    pass   
+        
+    return render_template('browse.html', data = data)
+  
+@views.route('/search', methods=['POST'])
+def search():
+    query = request.args.get('title')
+    matching_items = search_items(query)
+    return render_template('card_template.html', query=query,matching_items=matching_items)
+    
+def search_items():
+    # Get the search query from the user input
+    query = request.args.get('query')
+
+    # Query the Product model for items that match the search query
+    results = Product.query.filter(
+        (Product.title.contains(query)) |
+        (Product.category.contains(query)) |
+        (Product.price.contains(query))
+        (Product.quantity.contains(query))
+        (Product.image.contains(query))
+    ).all() 
+    # Rendering the matching items
+    render_template('card_template.html',results= results)
         
 
 @views.route('/basket', methods=['GET','POST'])
