@@ -10,7 +10,7 @@ import json
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 data = []
-pageNumber = 5
+pageNumber = 2
 base_url = "https://www.tesco.com/groceries/en-GB/shop/fresh-food/all?page="
 
 timeout = 5
@@ -22,10 +22,10 @@ for page in range(1,pageNumber+1):
     driver.get(url)
     product_container = driver.find_elements(By.XPATH,"//li[@class='product-list--list-item']")
     
-    for j, product in enumerate(product_container, start=1):
+    for j, product in enumerate(product_container, start=0):
         # Find Elements containing the information
-        product_names = wait.until(EC.presence_of_element_located((By.XPATH, ".//a[@class='styled__Anchor-sc-1xbujuz-0 csVOnh beans-link__anchor']//span[@class='styled__Text-sc-1xbujuz-1 ldbwMG beans-link__text']")))
-        product_images = wait.until(EC.presence_of_element_located((By.XPATH,".//div[@class='product-image__container']//img")))
+        product_names = product.find_element(By.XPATH, ".//a[@class='styled__Anchor-sc-1xbujuz-0 csVOnh beans-link__anchor']//span[@class='styled__Text-sc-1xbujuz-1 ldbwMG beans-link__text']")
+        product_images = product.find_element(By.XPATH,".//div[@class='product-image__container']//img")
         try:
             product_prices = wait.until(EC.presence_of_element_located((By.XPATH,".//p[@class='styled__StyledHeading-sc-119w3hf-2 jWPEtj styled__Text-sc-8qlq5b-1 lnaeiZ beans-price__text']")))
         except NoSuchElementException:
