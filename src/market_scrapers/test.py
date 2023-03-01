@@ -27,22 +27,40 @@ class Scraper:
             product_container = self.driver.find_elements(By.XPATH, self.product_container_locator)
             products = []
             for product in product_container:
-                title = self.get_product_title(product)
+                title, weight = self.get_product_title(product)
+                title = self.clean_product_title(title)
                 img_url = self.get_product_image_url(product)
                 price = self.get_product_price(product)
                 product_data = {
                     "title": title,
                     "img_url": img_url,
                     "price": price,
+                    "weight": weight,
                 }
                 products.append(product_data)
             self.data.extend(products)
+
+    # WILL COME BACK TO THIS FOR LATER FORMATTING
+    # def get_product_weight(self, title: str) -> str:
+    #     title = title.strip()
+    #     weight_idx = title.rfind(' ')
+    #     if weight_idx != -1:
+    #         weight = title[weight_idx+1:].strip().rstrip('0123456789 .')
+    #         return weight
+    #     return None
+    
+    # def clean_product_title(self, title: str) -> str:
+    #     title = re.sub(r'Tesco\s+','',title)
+    #     title = re.sub(r'\d+G\s*\+*','',title)
+    #     return title.strip()
 
     def get_product_title(self, product: WebElement) -> str:
         title_locator = (By.XPATH, self.product_title)
         title = product.find_element(*title_locator)
         title = title.text.strip()
-        return title
+        title = self.clean_product_title(title)
+        weight = self.get_product_weight(title)
+        return title, weight
 
     def get_product_image_url(self, product: WebElement) -> str:
         image_locator = (By.XPATH, self.product_image)
@@ -77,5 +95,5 @@ if __name__ == '__main__':
         product_image = xpath_data['tesco']['product_image']
     )
     tesco_scraper.scrape()
-    tesco_scraper.write_to_file('src/scraped_data/tesco_data12.json')
+    tesco_scraper.write_to_file('src/scraped_data/tesco_data11.json')
     driver.quit()
