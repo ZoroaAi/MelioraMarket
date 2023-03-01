@@ -7,10 +7,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import json
 
 class Scraper:
-    def __init__(self, base_url: str, page_number: int, product_container_locator: str, wait_time: int = 5):
+    def __init__(self, base_url: str, page_number: int, product_container_locator: str, product_name: str,product_price: str,product_image: str,wait_time: int = 5):
         self.base_url = base_url
         self.page_number = page_number
         self.product_container_locator = product_container_locator
+        self.product_title = product_name
+        self.product_price = product_price
+        self.product_image = product_image
         self.wait_time = wait_time
         self.wait = WebDriverWait(self.driver, self.wait_time)
         self.data = []
@@ -34,17 +37,17 @@ class Scraper:
             self.data.extend(products)
 
     def get_product_title(self, product: WebElement) -> str:
-        title_locator = (By.XPATH, ".//a[@class='styled__Anchor-sc-1xbujuz-0 csVOnh beans-link__anchor']//span[@class='styled__Text-sc-1xbujuz-1 ldbwMG beans-link__text']")
+        title_locator = (By.XPATH, self.product_title)
         title = self.wait.until(EC.visibility_of_element_located(title_locator))
         return title.text
 
     def get_product_image_url(self, product: WebElement) -> str:
-        image_locator = (By.XPATH, ".//div[@class='product-image__container']//img")
+        image_locator = (By.XPATH, self.product_image)
         image = self.wait.until(EC.visibility_of_element_located(image_locator))
         return image.get_attribute('srcset').split(',')[0].replace(' 768w','')
 
     def get_product_price(self, product: WebElement) -> str:
-        price_locator = (By.XPATH, ".//p[@class='styled__StyledHeading-sc-119w3hf-2 jWPEtj styled__Text-sc-8qlq5b-1 lnaeiZ beans-price__text']")
+        price_locator = (By.XPATH, self.product_price)
         try:
             price = self.wait.until(EC.visibility_of_element_located(price_locator))
         except:
@@ -57,11 +60,18 @@ class Scraper:
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
-    scraper = Scraper(
-        base_url = "https://www.tesco.com/groceries/en-GB/shop/fresh-food/all?page=",
+    
+    with open('src/market_scrapers/website_details.json') as f:
+        xpath_data = json.load(f)
+    
+    tesco_scraper = Scraper(
+        base_url = xpath_data['tesco']['base_url'],
         page_number = 2,
-        product_container_locator = "//li[contains(@class, 'product-list--list-item')]"
+        product_container_locator = xpath_data['tesco']['product_container'],
+        product_title = xpath_data['tesco']['product_name'],
+        product_price = xpath_data['tesco']['product_price'],
+        product_image = xpath_data['tesco']['product_image']
     )
-    scraper.scrape()
-    scraper.write_to_file('src/scraped_data/tesco_data.json')
+    tesco_scraper.scrape()
+    tesco_scraper.write_to_file('src/scraped_data/tesco_data.json')
     driver.quit()
