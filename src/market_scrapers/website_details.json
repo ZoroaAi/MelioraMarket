@@ -3,7 +3,7 @@
         "base_url": "https://www.tesco.com/groceries/en-GB/shop/fresh-food/all?page=",
         "page_number": 1,
         "product_container": "//li[@class='product-list--list-item']",
-        "product_name": ".//a[@class='styled__Anchor-sc-1xbujuz-0 csVOnh beans-link__anchor']//span[@class='styled__Text-sc-1xbujuz-1 ldbwMG beans-link__text']",
+        "product_title": ".//a[@class='styled__Anchor-sc-1xbujuz-0 csVOnh beans-link__anchor']//span[@class='styled__Text-sc-1xbujuz-1 ldbwMG beans-link__text']",
         "product_price": ".//p[@class='styled__StyledHeading-sc-119w3hf-2 jWPEtj styled__Text-sc-8qlq5b-1 lnaeiZ beans-price__text']",
         "product_image": ".//div[@class='product-image__container']//img"
     },
