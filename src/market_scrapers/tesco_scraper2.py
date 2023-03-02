@@ -27,13 +27,15 @@ class Scraper:
             product_container = self.driver.find_elements(By.XPATH, self.product_container_locator)
             products = []
             for product in product_container:
-                title = self.get_product_title(product)
+                title, weight = self.get_product_title(product)
+                title = self.clean_product_title(title)
                 img_url = self.get_product_image_url(product)
                 price = self.get_product_price(product)
                 product_data = {
                     "title": title,
                     "img_url": img_url,
                     "price": price,
+                    "weight": weight,
                 }
                 products.append(product_data)
             self.data.extend(products)
@@ -56,7 +58,9 @@ class Scraper:
         title_locator = (By.XPATH, self.product_title)
         title = product.find_element(*title_locator)
         title = title.text.strip()
-        return title
+        title = self.clean_product_title(title)
+        weight = self.get_product_weight(title)
+        return title, weight
 
     def get_product_image_url(self, product: WebElement) -> str:
         image_locator = (By.XPATH, self.product_image)
@@ -84,12 +88,12 @@ if __name__ == '__main__':
     tesco_scraper = Scraper(
         driver = driver,
         base_url = xpath_data['tesco']['base_url'],
-        page_number = 154,
+        page_number = 2,
         product_container_locator = xpath_data['tesco']['product_container'],
         product_title = xpath_data['tesco']['product_title'],
         product_price = xpath_data['tesco']['product_price'],
         product_image = xpath_data['tesco']['product_image']
     )
     tesco_scraper.scrape()
-    tesco_scraper.write_to_file('src/scraped_data/tesco_data.json')
+    tesco_scraper.write_to_file('src/scraped_data/tesco_data11.json')
     driver.quit()
