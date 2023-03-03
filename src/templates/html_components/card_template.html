@@ -1,24 +1,19 @@
+
 {% for item in data %}
-  <div class="col targeted-remove">
-    <div class="item-card card card-cover h-100 overflow-hidden rounded-4 shadow-lg">
+  <div class="product-card">
+    <div class="product-card__image">
+      <img src="{{ item['img_url'] }}" alt="{{ item['title'] }}">
+    </div>
+    <div class="product-card__content">
+      <h2 class="product-card__title">{{ item['title'] }}</h2>
+      <p class="product-card__price">£ {{ item['price'] }}</p>
       <form method="POST">
-        <div class="img-wrapper">
-          <img class="item-img" id="image" src="{{item['image']}}" width="100%" height="auto">
-          <div class="item-name">{{item['title']}}</div>
-        </div>
-        <div class="item-info">
-          <input type="hidden" name="product_id" value="">
-          <button type="button" onclick="">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-              class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-              <path
-                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z" />
-            </svg>
-          </button>
-          <label class="quantity-label" for="quantity">Quantity: </label>
+        <input type="hidden" name="product_id" value="{{ item['id'] }}">
+        <div class="product-card__quantity">
+          <label for="quantity">Quantity: </label>
           <input type="number" name="quantity" id="quantity" value="1" min="1">
-          <p>£ <small id="price">{{item['price']}}</small></p>
         </div>
+        <button type="submit" class="product-card__button">Add to cart</button>
       </form>
     </div>
   </div>

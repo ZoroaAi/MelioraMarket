@@ -1,0 +1,12 @@
+@use "../helpers/variables";
+
+.pagination{
+    .pagination-outline{
+        color: variables.$text-dark-mode;
+        text-decoration: none;
+        border-color: variables.$primary;
+    }
+    .selected-pagination{
+        color: variables.$primary;
+    }
+}

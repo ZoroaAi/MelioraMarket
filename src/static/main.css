@@ -343,39 +343,88 @@ h1 {
   color: #F6B93B;
 }
 
-.browse-cards {
-  min-width: 360px;
+/* CSS for the product card */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #F6B93B;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 300px;
+}
+.product-card__image {
+  width: 100%;
+  height: 200px;
+}
+.product-card__image img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  margin-top: 0;
 }
-.browse-cards .item-card {
-  background-color: white;
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
-
-.item-info {
-  background-color: white;
+.product-card__content__title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }
-.item-info button {
-  background: none;
-  border: none;
+.product-card__content__price {
+  font-size: 1.2rem;
+  color: #F6B93B;
+  margin-bottom: 1rem;
+  text-align: center;
 }
-.item-info small {
-  font-size: medium;
-  font-weight: 600;
+.product-card__content form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.item-info input {
+.product-card__content form__quantity {
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.product-card__content form__quantity label {
+  font-size: 1rem;
+  margin-right: 0.5rem;
+}
+.product-card__content form__quantity input {
   width: 3rem;
+  font-size: 1rem;
+  text-align: center;
+}
+.product-card__content form__button {
+  background-color: #F6B93B;
+  color: #212121;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.product-card__content form__button:hover {
+  background-color: #f3a70b;
 }
 
-.img-wrapper {
-  position: relative;
-  background-color: white;
+.pagination .pagination-outline {
+  color: #CBCBCB;
+  text-decoration: none;
+  border-color: #F6B93B;
 }
-.img-wrapper .item-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.pagination .selected-pagination {
+  color: #F6B93B;
 }
 
 .form {

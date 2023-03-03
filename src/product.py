@@ -14,7 +14,7 @@ with open('src/scraped_data/final_tesco_data.json') as json_file:
 def browse():
     # 
     page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-    per_page = 25
+    per_page = 24
     offset = (page - 1) * per_page
     pagination_data = data[offset: offset + per_page]
 
