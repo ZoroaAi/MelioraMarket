@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 
@@ -29,7 +29,7 @@ class Product(db.Model):
 class Basket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.now())
    
 class BasketItem(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -16,10 +16,10 @@ def create_app():
     
     from .views import views
     from .auth import auth
+    from .product import product
     app.register_blueprint(views, url_prefix = '/')
     app.register_blueprint(auth, url_prefix = '/')
-    
-    from .models import User, Product
+    app.register_blueprint(product, url_prefix = '/')
     
     if not path.exists('src/' + DB_NAME):
         with app.app_context():
