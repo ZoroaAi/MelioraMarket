@@ -2,6 +2,7 @@ import time
 from typing import List, Dict
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -9,7 +10,7 @@ from urllib.parse import urljoin
 import json
 
 class Scraper:
-    def __init__(self, driver: webdriver.Chrome, base_url: str, page_number: int, product_container_locator: str, product_title: str,product_price: str,product_image: str,wait_time: int = 5):
+    def __init__(self, driver: webdriver.Chrome, base_url: str, page_number: int, product_container_locator: str, product_title: str,product_price: str,product_image: str,wait_time: int = 6):
         self.driver = driver
         self.base_url = base_url
         self.page_number = page_number
@@ -78,8 +79,10 @@ class Scraper:
         return title
     def get_product_title_attribute(self,product: WebElement) -> str:
         print(self.product_title)
-        title_locator = self.wait.until(EC.presence_of_element_located((By.XPATH,self.product_title)))
-        title = title_locator.get_attribute('title')
+        WebDriverWait(self.driver,2)
+        title_locator = (By.XPATH,self.product_title)
+        title_ele = product.find_element(*title_locator)
+        title = title_ele.get_attribute('title')
         title = title.strip()
         print(title)
         return title
@@ -135,6 +138,6 @@ if __name__ == '__main__':
         product_image = xpath_data['morrisons']['product_image']
     )
     morrison_scraper.scrape()
-    morrison_scraper.write_to_file('src/scraped_data/morrison_data2.json')
+    morrison_scraper.write_to_file('src/scraped_data/morrison_data3.json')
     
     driver.quit()
