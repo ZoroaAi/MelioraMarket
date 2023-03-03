@@ -1,5 +1,5 @@
-{% extends 'base.html'%} {% block title %} Browse {% endblock %} {% block
-content %}
+{% extends 'base.html'%} {% block title %} Browse {% endblock %} 
+{% block content %}
 <div class="container">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-6">
@@ -49,5 +49,30 @@ content %}
     {% include 'html_components/card_template.html' %}
   </div>
 </div>
+
+<!-- Display Pagination -->
+{% if pagination.pages %}
+  <div class="pagination justify-content-center mb-4">
+    {% if pagination.has_prev %}
+      <a class="btn btn-outline-primary me-2" href="{{ url_for('product.browse', page=pagination.prev_num) }}">Previous</a>
+    {% else %}
+      <span class="btn btn-outline-secondary disabled me-2">Previous</span>
+    {% endif %}
+    {% for page_num in pagination.pages %}
+      {% if page_num %}
+        {% if page_num != pagination.page %}
+          <a class="btn btn-outline-primary me-2" href="{{ url_for('product.browse', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <span class="btn btn-primary me-2">{{ page_num }}</span>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if pagination.has_next %}
+      <a class="btn btn-outline-primary" href="{{ url_for('product.browse', page=pagination.next_num) }}">Next</a>
+    {% else %}
+      <span class="btn btn-outline-secondary disabled">Next</span>
+    {% endif %}
+  </div>
+{% endif %}
 
 {% endblock %}

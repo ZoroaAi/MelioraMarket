@@ -1,7 +1,9 @@
 import json
+import math
 from flask import Blueprint, redirect ,render_template, request, flash, session, url_for
 from . import db
 from .models import Basket, User, Product, BasketItem
+from flask_paginate import Pagination, get_page_args 
 
 product = Blueprint('product', __name__)
 
@@ -10,7 +12,21 @@ with open('src/scraped_data/final_tesco_data.json') as json_file:
 
 @product.route('/browse', methods=['GET','POST'])
 def browse():
-    return render_template('browse.html', data = data)
+    # 
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+    per_page = 25
+    offset = (page - 1) * per_page
+    pagination_data = data[offset: offset + per_page]
+
+    pagination = Pagination(page=page, per_page=per_page, total=len(data), css_framework='bootstrap4')
+
+    return render_template('browse.html', data=pagination_data, pagination=pagination)
+
+# Return list of products on current page
+def get_products_for_page(page, per_page):
+    start_idx = (page - 1) * per_page
+    end_idx = start_idx + per_page
+    return data[start_idx:end_idx]
 
 @product.route('/add_to_basket', methods = ['POST'])
 def add_to_basket():

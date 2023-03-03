@@ -1,6 +1,4 @@
-
-
-{% for item in results %}
+{% for item in data %}
   <div class="col targeted-remove">
     <div class="item-card card card-cover h-100 overflow-hidden rounded-4 shadow-lg">
       <form method="POST">
@@ -10,7 +8,7 @@
         </div>
         <div class="item-info">
           <input type="hidden" name="product_id" value="">
-          <button type="button" onclick="{{addToBasket()}}">
+          <button type="button" onclick="">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
               class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
               <path
