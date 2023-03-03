@@ -1,12 +1,12 @@
 
 
-{% for item in data %}
+{% for item in results %}
   <div class="col targeted-remove">
     <div class="item-card card card-cover h-100 overflow-hidden rounded-4 shadow-lg">
       <form method="POST">
         <div class="img-wrapper">
-          <img class="item-img" id="image" src="{{item.image}}" width="100%" height="auto">
-          <div class="item-name">{{item.title}}</div>
+          <img class="item-img" id="image" src="{{item['image']}}" width="100%" height="auto">
+          <div class="item-name">{{item['title']}}</div>
         </div>
         <div class="item-info">
           <input type="hidden" name="product_id" value="">
@@ -19,7 +19,7 @@
           </button>
           <label class="quantity-label" for="quantity">Quantity: </label>
           <input type="number" name="quantity" id="quantity" value="1" min="1">
-          <p>£ <small id="price">{{item.unit_price}}</small></p>
+          <p>£ <small id="price">{{item['price']}}</small></p>
         </div>
       </form>
     </div>

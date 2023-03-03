@@ -1,10 +1,13 @@
-from flask import Blueprint ,render_template, request, flash
+from flask import Blueprint, redirect ,render_template, request, flash, session, url_for
 from flask_login import login_required, current_user
 from . import db
-from .models import User, Product, BasketItem
+from .models import Basket, User, Product, BasketItem
 import json
 
 views = Blueprint('views', __name__)
+
+with open('src/scraped_data/final_tesco_data.json') as json_file:
+        data = json.load(json_file)
 
 @views.route('/', methods=['GET', 'POST'])
 def home():
@@ -12,22 +15,46 @@ def home():
 
 @views.route('/browse', methods=['GET','POST'])
 def browse():
-    with open('src/test_data/tesco_test.json') as json_file:
-        data = json.load(json_file)
-    
-    for item in data:
-        new_item = Product(title = item['title'], price = item['unit_price'], img = item['image'], category = item['category'])
-        db.session.add(new_item)
-    db.session.commit()
-    
-        
     return render_template('browse.html', data = data)
-  
+
+@views.route('/add_to_basket', methods = ['POST'])
+def add_to_basket():
+    product_id = request.form.get('product_id')
+    if 'user_id' in session:
+        user_id = session['user_id']
+    
+    # Add the product to he user's basket
+    basket = get_basket_for_user(user_id)
+    add_product(basket, product_id)
+    return redirect(url_for('browse.html'))
+
+def get_basket_for_user(user_id):
+    user = User.query.get(user_id)
+    if user is None:
+        return None
+    basket = Basket.query.filter_by(user_id=user.id).order_by(Basket.created_at.desc()).first()
+    if basket is None:
+        basket = Basket(user_id=user.id)
+        db.session.add(basket)
+        db.session.commit()
+    return basket
+
+def add_product(basket, product_id):
+    # Adds given product to the basket
+    item = BasketItem.query.filter_by(basket_id=basket.id, product_id=product_id).first()
+    if item is None:
+        # Add the product if not already in the basket
+        item = BasketItem(basket_id=basket.id, product_id=product_id)
+        db.session.add(item)
+    else:
+        item.quantity += 1
+    db.session.commit()
+
 @views.route('/search', methods=['POST'])
 def search():
     query = request.args.get('title')
-    matching_items = search_items(query)
-    return render_template('card_template.html', query=query,matching_items=matching_items)
+    results = filter(lambda x: query.lower() in x['product_name'].lower(), data)
+    return render_template('card_template.html', results=results)
     
 def search_items():
     # Get the search query from the user input

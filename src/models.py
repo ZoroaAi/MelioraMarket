@@ -1,12 +1,11 @@
-from . import db
-from flask_login import UserMixin
-from sqlalchemy.sql import func
+import datetime
+from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField
-from wtforms.validators import DataRequired, Length
+
+db = SQLAlchemy()
 
 # Database Models
-class User(db.Model, UserMixin):
+class User(db.Model):
     # User info
     id = db.Column(db.Integer, primary_key=True)
     # basket = db.relationship('BasketItem')
@@ -19,25 +18,22 @@ class User(db.Model, UserMixin):
     
 class Product(db.Model):
     # Product info
-    id = db.Column(db.Integer, primary_key = True)
-    # basket = db.Column(db.Integer, db.ForeignKey('basketItem.id'))
-    title = db.Column(db.String(150))
-    price = db.Column(db.Float(1000))
-    img = db.Column(db.String(120), unique = True)
-    quantity = db.Column(db.Integer)
-    category = db.Column(db.String(100))
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    price = db.Column(db.Float, nullable=False)
+    img_url = db.Column(db.String(200), nullable=False)
     
     def __repr__(self):
         return f"Product<'{self.title}',{self.price},{self.img},{self.quantity},{self.quantity}>"
-    
+ 
+class Basket(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+   
 class BasketItem(db.Model):
-    # Basket info
-    id = db.Column(db.Integer, primary_key = True)
-    # user_id = db.Column(db.Integer, db.ForeignKey("user"))
-    # product_id = db.Column(db.Integer, db.ForeignKey('product.id'))
+    id = db.Column(db.Integer, primary_key=True)
+    basket_id = db.Column(db.Integer, db.ForeignKey('basket.id'), nullable=False)
+    product_id = db.Column(db.Integer, nullable=False)
+    quantity = db.Column(db.Integer, nullable=False, default=1)
 
-
-# Forms
-class SearchedItems(FlaskForm):
-    searched = StringField("searched", validator=[DataRequired()])
-    submit = SubmitField()

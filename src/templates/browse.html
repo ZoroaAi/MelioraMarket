@@ -45,27 +45,8 @@ content %}
 <div class="browse-cards container px-4" id="custom-cards">
   <div
     class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5"
-    id="inject-cards"
-  >
-    <!-- {% include 'html_components/card_template.html' %} -->
-    <script>
-      searchBar = document.getElementById("searchBar");
-      searchBar.addEventListener("input", (e) => {
-        let value = e.target.value;
-        // Check if input exists and is greater than 0
-        if (value && value.trim().length > 0) {
-          value.value.trim().toLowerCase();
-
-          // Return results that include the value of the search
-          setDiv(
-            items.filter((item) => {
-              return item.name.includes(value);
-            })
-          );
-        } else {
-        }
-      });
-    </script>
+    id="inject-cards">
+    {% include 'html_components/card_template.html' %}
   </div>
 </div>
 
