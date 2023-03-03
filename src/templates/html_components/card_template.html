@@ -1,4 +1,6 @@
-
+{% if query %}
+  <h2>Search Results for "{{ query }}"</h2>
+{% endif %}
 {% for item in data %}
   <div class="product-card">
     <div class="product-card__image">

@@ -11,16 +11,30 @@ with open('src/scraped_data/final_tesco_data.json') as json_file:
         data = json.load(json_file)
 
 @product.route('/browse', methods=['GET','POST'])
+@product.route('/browse', methods=['GET', 'POST'])
 def browse():
-    # 
-    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+    query = request.args.get('title')
+    # Check if a query has been submitted
+    if query:
+        # Filter data based on query
+        results = filter(lambda x: query.lower() in x['title'].lower(), data)
+        products = list(results)
+        if not products:
+            flash(f"No results found for '{query}'", 'warning')
+            return redirect(url_for('product.browse'))
+        template = 'html_components/card_template.html'
+        return render_template('browse.html', data=products, title=f"Search Results for '{query}'", template=template)
+    
+    # If no query return all products
+    page = request.args.get('page', 1, type=int)
     per_page = 24
-    offset = (page - 1) * per_page
-    pagination_data = data[offset: offset + per_page]
+    start = (page-1)*per_page
+    end = start+per_page
+    products = data[start:end]
+    pagination = Pagination(page=page, total=len(data), per_page=per_page, css_framework='bootstrap4')
+    template = 'html_components/card_template.html'
+    return render_template('browse.html', data=products, pagination=pagination, title="Browse", template=template)
 
-    pagination = Pagination(page=page, per_page=per_page, total=len(data), css_framework='bootstrap4')
-
-    return render_template('browse.html', data=pagination_data, pagination=pagination)
 
 # Return list of products on current page
 def get_products_for_page(page, per_page):
@@ -61,8 +75,8 @@ def add_product(basket, product_id):
         item.quantity += 1
     db.session.commit()
 
-@product.route('/search', methods=['POST'])
+@product.route('/search', methods=['GET'])
 def search():
     query = request.args.get('title')
-    results = filter(lambda x: query.lower() in x['product_name'].lower(), data)
-    return render_template('card_template.html', results=results) 
+    results = filter(lambda x: query.lower() in x['title'].lower(), data)
+    return render_template('html_components/card_template.html', data=results, query=query)
