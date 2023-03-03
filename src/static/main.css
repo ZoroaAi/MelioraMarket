@@ -247,6 +247,7 @@ input {
   border-left: 1px solid #ccc;
   outline: 0;
   padding: 5px;
+  width: 100%;
 }
 
 /* MOBILE MENU & ANIMATION */
@@ -343,27 +344,42 @@ h1 {
   color: #F6B93B;
 }
 
-/* CSS for the product card */
-.product-card {
+.card-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+.card-container .item {
+  flex: 0 0 auto;
+  margin: 4px;
+}
+
+.product-card {
   border: 1px solid #F6B93B;
   border-radius: 4px;
   margin-bottom: 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   max-width: 300px;
+  width: 200px;
+}
+.product-card #product-card__price {
+  font-size: 1.2rem;
+  color: #F6B93B;
+  text-align: center;
+  margin-bottom: 0;
 }
 .product-card__image {
   width: 100%;
-  height: 200px;
+  height: auto;
 }
 .product-card__image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .product-card__content {
   display: flex;
@@ -373,49 +389,34 @@ h1 {
   padding: 1rem;
 }
 .product-card__content__title {
-  font-size: 1.2rem;
+  color: #F6B93B;
+  font-size: 0.5rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: center;
 }
-.product-card__content__price {
-  font-size: 1.2rem;
-  color: #F6B93B;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-.product-card__content form {
+.product-card__content .search-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.product-card__content form__quantity {
+.product-card__content .search-form .product-card__quantity {
   margin-bottom: 1rem;
   text-align: center;
 }
-.product-card__content form__quantity label {
+.product-card__content .search-form .product-card__quantity label {
   font-size: 1rem;
   margin-right: 0.5rem;
-}
-.product-card__content form__quantity input {
-  width: 3rem;
-  font-size: 1rem;
   text-align: center;
 }
-.product-card__content form__button {
-  background-color: #F6B93B;
-  color: #212121;
-  border: none;
-  border-radius: 4px;
+.product-card__content .search-form .product-card__quantity input {
   font-size: 1rem;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+  width: 55px;
 }
-.product-card__content form__button:hover {
-  background-color: #f3a70b;
+.product-card__content .search-form .product-card__button {
+  color: black;
 }
 
 .pagination .pagination-outline {
