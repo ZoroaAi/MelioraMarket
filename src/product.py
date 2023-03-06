@@ -7,7 +7,7 @@ from flask_paginate import Pagination, get_page_args
 
 product = Blueprint('product', __name__)
 
-with open('src/scraped_data/final_tesco_data.json') as json_file:
+with open('src/scraped_data/total_data.json') as json_file:
         data = json.load(json_file)
 
 @product.route('/browse', methods=['GET','POST'])
