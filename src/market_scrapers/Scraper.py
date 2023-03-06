@@ -30,7 +30,7 @@ class Scraper:
             product_container = self.driver.find_elements(By.XPATH, self.product_container_locator)
             products = []
             for product in product_container:
-                title = self.get_product_title_attribute(product)
+                title = self.get_product_title(product)
                 img_url = self.get_product_image_url(product)
                 price = self.get_product_price(product)
                 product_data = {
@@ -58,21 +58,8 @@ class Scraper:
                     products.append(product_data)
                 self.data.extend(products)
 
-    # WILL COME BACK TO THIS FOR LATER FORMATTING
-    # def get_product_weight(self, title: str) -> str:
-    #     title = title.strip()
-    #     weight_idx = title.rfind(' ')
-    #     if weight_idx != -1:
-    #         weight = title[weight_idx+1:].strip().rstrip('0123456789 .')
-    #         return weight
-    #     return None
-    
-    # def clean_product_title(self, title: str) -> str:
-    #     title = re.sub(r'Tesco\s+','',title)
-    #     title = re.sub(r'\d+G\s*\+*','',title)
-    #     return title.strip()
-
     def get_product_title(self, product: WebElement) -> str:
+        WebDriverWait(self.driver,2)
         title_locator = (By.XPATH, self.product_title)
         title = product.find_element(*title_locator)
         title = title.text.strip()
@@ -89,14 +76,15 @@ class Scraper:
 
     def get_product_image_url(self, product: WebElement) -> str:
         image_locator = (By.XPATH, self.product_image)
-        image = self.wait.until(EC.visibility_of_element_located(image_locator))
+        image = product.find_element(*image_locator)
+        # image = self.wait.until(EC.visibility_of_element_located(image_locator))
         # image = image.get_attribute('srcset').split(',')[0].replace(' 1x','')
         return image.get_attribute('srcset').split(',')[0].replace(' 768w','')
 
     def get_product_price(self, product: WebElement) -> str:
         price_locator = (By.XPATH, self.product_price)
         try:
-            price_element = self.wait.until(EC.visibility_of_element_located(price_locator))
+            price_element = product.find_element(*price_locator)
             price_text = price_element.text
             price_en = price_text.encode("ascii","ignore")
             price = price_en.decode()
@@ -115,29 +103,29 @@ if __name__ == '__main__':
         xpath_data = json.load(f)
     
     # Scrape Tesco
-    # tesco_scraper = Scraper(
-    #     driver = driver,
-    #     base_url = xpath_data['tesco']['base_url'],
-    #     page_number = 154,
-    #     product_container_locator = xpath_data['tesco']['product_container'],
-    #     product_title = xpath_data['tesco']['product_title'],
-    #     product_price = xpath_data['tesco']['product_price'],
-    #     product_image = xpath_data['tesco']['product_image']
-    # )
-    # tesco_scraper.scrape()
-    # tesco_scraper.write_to_file('src/scraped_data/tesco_data.json')
+    tesco_scraper = Scraper(
+        driver = driver,
+        base_url = xpath_data['tesco']['base_url'],
+        page_number = 155,
+        product_container_locator = xpath_data['tesco']['product_container'],
+        product_title = xpath_data['tesco']['product_title'],
+        product_price = xpath_data['tesco']['product_price'],
+        product_image = xpath_data['tesco']['product_image']
+    )
+    tesco_scraper.scrape()
+    tesco_scraper.write_to_file('src/scraped_data/tesco_data1111.json')
     
     # Scrape Morrison
-    morrison_scraper = Scraper(
-        driver = driver,
-        base_url = xpath_data['morrisons']['base_url'],
-        page_number = 1,
-        product_container_locator = xpath_data['morrisons']['product_container'],
-        product_title = xpath_data['morrisons']['product_title'],
-        product_price = xpath_data['morrisons']['product_price'],
-        product_image = xpath_data['morrisons']['product_image']
-    )
-    morrison_scraper.scrape()
-    morrison_scraper.write_to_file('src/scraped_data/morrison_data3.json')
+    # morrison_scraper = Scraper(
+    #     driver = driver,
+    #     base_url = xpath_data['morrisons']['base_url'],
+    #     page_number = 1,
+    #     product_container_locator = xpath_data['morrisons']['product_container'],
+    #     product_title = xpath_data['morrisons']['product_title'],
+    #     product_price = xpath_data['morrisons']['product_price'],
+    #     product_image = xpath_data['morrisons']['product_image']
+    # )
+    # morrison_scraper.scrape()
+    # morrison_scraper.write_to_file('src/scraped_data/morrison_data3.json')
     
     driver.quit()
