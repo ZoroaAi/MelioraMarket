@@ -8,13 +8,12 @@
         "product_image": ".//div[@class='product-image__container']//img"
     },
     "morrisons":{
-        "base_url": "https://groceries.morrisons.com/browse/fresh-176739",
+        "base_url": "https://groceries.morrisons.com/browse/fresh-176739?display=2193",
         "page_number": 1,
         "product_container":"//li[@class='fops-item fops-item--on_offer']",
-        "product_title": ".//div[@class='fop-description']/h4[@class='fop-title']",
-        "product_price": ".//span[@class='fop-price']",
-        "product_image": ".//div[@class='fop-img-wrapper']/div/img",
-        "weight": "//h4[@class='fop-title']/span[@class='fop-catch-weight']"
+        "product_title": ".//h4[@class='fop-title']/span[1]",
+        "product_price": "fop-price",
+        "product_image": ".//div[@class='fop-img-wrapper']/div/img"
     },
     "asda":{
         "base_url": "",
@@ -33,3 +32,4 @@
         "product_image": ""
     }
 }
+
