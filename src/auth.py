@@ -22,36 +22,35 @@ def login():
                 flash('Incorrect Password, Try Again', category='Error')
     return render_template('/login.html', user=current_user)
 
-@auth.route('/register')
+@auth.route('/register', methods=['GET','POST'])
 def register():
-    # Form Validation
     if request.method == 'POST':
-        email = request.form.get('email')
-        firstName = request.form.get('firstName')
+        # Get the form data
+        email_input = request.form.get('email')
+        first_name = request.form.get('firstName')
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
         
-        user = User.query.filter_by(email=email).first()
-        if user:
-            flash('Email is already in use', category='Error')
-        elif len(email)<7:
-            flash('Email must be longer than 7 characters', category='Error')
-        elif len(firstName) < 2:
-            flash('First Name must be longer than 2 characters', category='Error')
+        # Validate the form data
+        if User.query.filter_by(email=email_input).first():
+            flash('Email already exists.', category='error')
+        elif len(email_input) < 4:
+            flash('Email must be greater than 3 characters.', category='error')
+        elif len(first_name) < 2:
+            flash('First name must be greater than 1 character.', category='error')
         elif password1 != password2:
-            flash('Passwords does not match', category='Error')
+            flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
-            flash('Password must be longer than 6 characters', category='Error')
+            flash('Password must be at least 7 characters.', category='error')
         else:
-            # Adding user to database:
-            new_user = User(email=email, firstName=firstName, password = generate_password_hash(password1, method='sha256'))
+            # Add the new user to the database
+            new_user = User(email=email_input, firstName=first_name, password=generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(user, remember= True)
-            flash('Account has been created!', category='Success')
-            return redirect(url_for('views.home'))
-        
-    return render_template('register.html', user= current_user)
+            login_user(new_user, remember=True)
+            flash('Account has been created!', category='success')
+            return redirect(url_for('auth.login'))
+    return render_template('register.html', user=current_user)
 
 @auth.route('/logout')
 def logout():

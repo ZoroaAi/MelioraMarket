@@ -38,6 +38,9 @@
   justify-content: space-between;
   margin-bottom: 1.25rem;
 }
+.main .wrapper .form .input-control.-register {
+  flex-direction: column;
+}
 .main .wrapper .form .input-field {
   font-family: inherit;
   font-size: 1rem;

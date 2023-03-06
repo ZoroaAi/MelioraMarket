@@ -2,31 +2,51 @@
     <section class="wrapper">
         <div class="heading">
             <h1 class="text text-large">Register</h1>
-            <p class="text text-normal">Already Have an Account? <span><a href="{{url_for('auth.login')}}" class="text text-links show-login-page">
-                Login</a></span>
-            </p>
         </div>
         <form name="signUp" class="form" method="POST">
-            <div class="input-control">
+            <div class="input-control input-control-register">
                 <label for="email" class="input-label" hidden>Email Address</label>
                 <input type="email" name="email" id="email" class="input-field" placeholder="Email Address">
             </div>
-            <div class="input-control">
+            <div class="input-control input-control-register">
                 <label for="password" class="input-label" hidden>First Name</label>
                 <input type="text" name="firstName" id="firstName" class="input-field" placeholder="First Name">
             </div>
-            <div class="input-control">
+            <div class="input-control input-control-register">
                 <label for="password" class="input-label" hidden>Password</label>
                 <input type="password" name="password1" id="password1" class="input-field" placeholder="Password">
             </div>
-            <div class="input-control">
+            <div class="input-control input-control-register">
                 <label for="password" class="input-label" hidden>Confirm Password</label>
-                <input type="password" name="password2" id="password2" class="input-field" placeholder="Password">
+                <input type="password" name="password2" id="password2" class="input-field" placeholder="Confirm Password">
             </div>
-            <div class="input-control">
-                <a href="#" class="text text-links">Forgot Password?</a>
-                <button type="submit" name="submit" class="butt input-submit">Signup</button>
+            <div class="input-control input-control-register">
+                <p class="text text-normal">Have an Account? <span><a href="{{url_for('auth.login')}}" class="text text-links show-login-page">
+                    Login</a></span>
+                </p>
+                <button type="submit" name="submit" class="butt input-submit sign-up-butt">Signup</button>
             </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+              {% for category, message in messages %}
+                {% if category == 'Error' %}
+                  <div class="alert alert-danger alert-dismissable fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                {% else %}
+                  <div class="alert alert-success alert-dismissable fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
         </form>
         <div class="striped">
             <span class="striped-line"></span>

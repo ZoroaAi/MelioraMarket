@@ -24,7 +24,7 @@
 		background: variables.$dark;
 		box-shadow: 16px 16px 29px #161616, -16px -16px 29px #2c2c2c;
 
-        // Login Form
+        // Login Sing-up Form
 		.form {
 			width: 100%;
 			height: auto;
@@ -38,6 +38,9 @@
 				align-items: center;
 				justify-content: space-between;
 				margin-bottom: 1.25rem;
+                &.-register{
+                    flex-direction: column;
+                }
 			}
 
 			.input-field {
