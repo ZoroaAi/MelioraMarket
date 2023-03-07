@@ -37,14 +37,24 @@ $primary: variables.$primary;
         transform: scale(1.5);
     }
 }
-// .butt-hover{
-//     transition: 0.5s ease-in-out;
-//     :hover{
-//         transform: scale(1.5);
-//     }
-// }
 
 .heroImg{
     height: auto;
-    width: 100% \9;
+    width: 100%;
+}
+
+#footer-links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    a {
+        color: variables.$text-dark-mode;
+        font-size: 0.9rem;
+        font-weight: 400;
+        text-decoration: none;
+        transition: color 0.3s ease-out;
+        &:hover{
+            color: variables.$primary;
+        }
+    }
 }

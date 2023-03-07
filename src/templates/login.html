@@ -1,5 +1,5 @@
 {% extends 'base.html' %} 
-{% block title %}Login{% endblock%}}
+{% block title %}Login{% endblock%}
 
 {% block content %}
     <main class="main">
@@ -7,7 +7,7 @@
             <section class="wrapper">
                 <div class="heading">
                     <h1 class="text text-large">Log In</h1>
-                    <p class="text text-normal">New user? <span><a href="sign-up" class="text text-links">
+                    <p class="text text-normal">New user? <span><a href="{{url_for('auth.sign_up')}}" class="text text-links">
                         Create an account</a></span>
                     </p>
                 </div>
