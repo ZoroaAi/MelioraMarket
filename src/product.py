@@ -68,9 +68,3 @@ def add_product(basket, product_id):
     else:
         item.quantity += 1
     db.session.commit()
-
-# @product.route('/search', methods=['GET'])
-# def search():
-#     query = request.args.get('title')
-#     results = filter(lambda x: query.lower() in x['title'].lower(), data)
-#     return render_template('html_components/card_template.html', data=results, query=query)

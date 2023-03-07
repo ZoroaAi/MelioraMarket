@@ -21,9 +21,8 @@ def create_app():
     app.register_blueprint(auth, url_prefix = '/')
     app.register_blueprint(product, url_prefix = '/')
     
-    if not path.exists('src/' + DB_NAME):
-        with app.app_context():
-            db.create_all()
-            print('Created Database: %s' % DB_NAME)
+    with app.app_context():
+        db.create_all()
+        print('Created Database: %s' % DB_NAME)
     return app
     

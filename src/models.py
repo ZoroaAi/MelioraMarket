@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 
@@ -13,6 +14,11 @@ class User(db.Model):
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
     
+    def __init__(self, email,password,firstName):
+        self.email = email
+        self.password = password
+        self.firstName = firstName
+    
     def __repr__(self) -> str:
         return super().__repr__()
     
@@ -22,9 +28,16 @@ class Product(db.Model):
     title = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
     img_url = db.Column(db.String(200), nullable=False)
+    market_name = db.Column(db.String(100), nullable=False)
+    
+    def __init__(self,title,price,img_url,market_name):
+        self.title = title
+        self.price = price
+        self.img_url = img_url
+        self.market_name = market_name 
     
     def __repr__(self):
-        return f"Product<'{self.title}',{self.price},{self.img},{self.quantity},{self.quantity}>"
+        return f"Product<'{self.market_name},{self.title}',{self.price},{self.img}>"
  
 class Basket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,3 +50,12 @@ class BasketItem(db.Model):
     product_id = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False, default=1)
 
+
+# Populate Database
+def add_products_from_json():
+    with open('src/scraped_data/total_data.json', 'r') as f:
+        products = json.load(f)
+    for product in products:
+        p = Product(title=product['title'], price = product['price'],img_url=product['img_url'], market_name=product['market'])
+        db.session.commit(p)
+    db.session.commit()
