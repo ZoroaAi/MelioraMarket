@@ -38,23 +38,22 @@ $primary: variables.$primary;
     }
 }
 
-.heroImg{
-    height: auto;
-    width: 100%;
-}
-
-#footer-links{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    a {
-        color: variables.$text-dark-mode;
-        font-size: 0.9rem;
-        font-weight: 400;
-        text-decoration: none;
-        transition: color 0.3s ease-out;
-        &:hover{
-            color: variables.$primary;
+// Footer
+.footer-container{
+    #footer-links{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        a {
+            color: variables.$text-dark-mode;
+            font-size: 0.9rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: color 0.3s ease-out;
+            &:hover{
+                color: variables.$primary;
+            }
         }
     }
 }
+

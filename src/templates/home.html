@@ -2,154 +2,157 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-  <div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <img src="../static/images/person-idea-money.svg" class="heroImg d-block" width="700" height="1080" alt="Homepage Hero Image" loading="lazy">
-      </div>
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3">Meliora Market Price Comparison</h1>
-        <p class="lead">Shop Smarter, Not Harder - Compare Supermarket Prices with Us Today</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <button type="button" class="butt butt-hover px-4 me-sm-3">Primary</button>
+<!-- Hero -->
+  <section class="hero-section">
+    <div class="landing-page container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="../static/images/person-idea-money.svg" class="heroImg d-block" width="700" height="1080" alt="Homepage Hero Image" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">Meliora Market Price Comparison</h1>
+          <p class="lead">Shop Smarter, Not Harder - Compare Supermarket Prices with Us Today</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{{url_for('auth.login')}}"><button type="button" class="butt butt-hover px-4 me-sm-3">Login</button></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Features -->
-  <div class="container px-4 py-5" id="icon-grid">
-    <h2 class="pb-2 border-bottom">Features</h2>
-
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
-      <div class="col d-flex align-items-start">
-        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-          <use xlink:href="#bootstrap" />
-        </svg>
-        <div>
-          <h3 class="fw-bold mb-0 fs-4">Latest deals and offers</h3>
-          <p>A section highlighting the latest deals and offers at each supermarket, making it easy for users to take advantage of the best deals available</p>
+  <section class="feature-section">
+    <div class="feature-div container px-4 py-5" id="icon-grid">
+      <h2 class="pb-2 border-bottom">Features</h2>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5">
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+            <use xlink:href="#bootstrap" />
+          </svg>
+          <div>
+            <h3 class="fw-bold mb-0 fs-4">Latest deals and offers</h3>
+            <p>A section highlighting the latest deals and offers at each supermarket, making it easy for users to take advantage of the best deals available</p>
+          </div>
         </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-          <use xlink:href="#cpu-fill" />
-        </svg>
-        <div>
-          <h3 class="fw-bold mb-0 fs-4">Personalization</h3>
-          <p>The ability for users to create an account and save their favourite products and supermarkets, as well as receive alerts when the price of a product they are interested in drops</p>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+            <use xlink:href="#cpu-fill" />
+          </svg>
+          <div>
+            <h3 class="fw-bold mb-0 fs-4">Personalization</h3>
+            <p>The ability for users to create an account and save their favourite products and supermarkets, as well as receive alerts when the price of a product they are interested in drops</p>
+          </div>
         </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-          <use xlink:href="#calendar3" />
-        </svg>
-        <div>
-          <h3 class="fw-bold mb-0 fs-4">Store locator</h3>
-          <p>A feature that allows users to find the nearest supermarket where they can buy a product at the best price</p>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+            <use xlink:href="#calendar3" />
+          </svg>
+          <div>
+            <h3 class="fw-bold mb-0 fs-4">Store locator</h3>
+            <p>A feature that allows users to find the nearest supermarket where they can buy a product at the best price</p>
+          </div>
         </div>
-      </div>
-      <div class="col d-flex align-items-start">
-        <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
-          <use xlink:href="#home" />
-        </svg>
-        <div>
-          <h3 class="fw-bold mb-0 fs-4">Mobile Optimization</h3>
-          <p>A mobile-friendly website that can be easily accessed from a smartphone or tablet, making it easy for users to compare prices on-the-go</p>
+        <div class="col d-flex align-items-start">
+          <svg class="bi text-muted flex-shrink-0 me-3" width="1.75em" height="1.75em">
+            <use xlink:href="#home" />
+          </svg>
+          <div>
+            <h3 class="fw-bold mb-0 fs-4">Mobile Optimization</h3>
+            <p>A mobile-friendly website that can be easily accessed from a smartphone or tablet, making it easy for users to compare prices on-the-go</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- Top Deals -->
-  <div class="container px-4 py-5" id="custom-cards">
-    <h2 class="pb-2 border-bottom">Top Deals Today</h2>
-
-    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
-      <div class="col">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-          style="background-image: url('unsplash-photo-1.jpg');">
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="card-text pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Item 1</h3>
-            <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                </svg>
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill" />
-                </svg>
-                <small>Item Name</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3" />
-                </svg>
-                <small>£££</small>
-              </li>
-            </ul>
+  <section class="deals-section">
+    <div class="container px-4 py-5" id="custom-cards">
+      <h2 class="pb-2 border-bottom">Top Deals Today</h2>
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url('unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h3 class="card-text pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Item 1</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                  </svg>
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em">
+                    <use xlink:href="#geo-fill" />
+                  </svg>
+                  <small>Item Name</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em">
+                    <use xlink:href="#calendar3" />
+                  </svg>
+                  <small>£££</small>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-          style="background-image: url('unsplash-photo-2.jpg');">
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="card-text pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Item 2</h3>
-            <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                </svg>
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill" />
-                </svg>
-                <!-- <span class="bi bi-plus-circle-fill"></span> -->
-                <small>Item Name</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3" />
-                </svg>
-                <small>£££</small>
-              </li>
-            </ul>
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url('unsplash-photo-2.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h3 class="card-text pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Item 2</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                  </svg>
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em">
+                    <use xlink:href="#geo-fill" />
+                  </svg>
+                  <!-- <span class="bi bi-plus-circle-fill"></span> -->
+                  <small>Item Name</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em">
+                    <use xlink:href="#calendar3" />
+                  </svg>
+                  <small>£££</small>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="col">
-        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
-          style="background-image: url('unsplash-photo-3.jpg');">
-          <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-            <h3 class="card-text pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Item 3</h3>
-            <ul class="d-flex list-unstyled mt-auto">
-              <li class="me-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                </svg>
-              </li>
-              <li class="d-flex align-items-center me-3">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#geo-fill" />
-                </svg>
-                <small>Item Name</small>
-              </li>
-              <li class="d-flex align-items-center">
-                <svg class="bi me-2" width="1em" height="1em">
-                  <use xlink:href="#calendar3" />
-                </svg>
-                <small>£££</small>
-              </li>
-            </ul>
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg"
+            style="background-image: url('unsplash-photo-3.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h3 class="card-text pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Item 3</h3>
+              <ul class="d-flex list-unstyled mt-auto">
+                <li class="me-auto">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                  </svg>
+                </li>
+                <li class="d-flex align-items-center me-3">
+                  <svg class="bi me-2" width="1em" height="1em">
+                    <use xlink:href="#geo-fill" />
+                  </svg>
+                  <small>Item Name</small>
+                </li>
+                <li class="d-flex align-items-center">
+                  <svg class="bi me-2" width="1em" height="1em">
+                    <use xlink:href="#calendar3" />
+                  </svg>
+                  <small>£££</small>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endblock %}

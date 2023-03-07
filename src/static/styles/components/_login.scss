@@ -4,13 +4,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: 100vh;
-        width: 100vw;
+        width: 100%;
         padding: 0 2rem;
         margin: auto;
         z-index: -1;
-        position: fixed;
-        transform: translateY(-50px);
     }
     .wrapper {
 		max-width: 28rem;
@@ -28,7 +25,7 @@
 		.form {
 			width: 100%;
 			height: auto;
-			margin-top: 2rem;
+			margin-top: 1rem;
 
             display: flex;
             flex-direction: column;
@@ -37,7 +34,7 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				margin-bottom: 1.25rem;
+				margin-bottom: 1rem;
 			}
 
 			.input-field {
@@ -103,6 +100,7 @@
 	line-height: inherit;
 	text-transform: unset;
 	text-rendering: optimizeLegibility;
+    margin-bottom: 0;
 
 	&-large {
 		font-size: 2rem;
@@ -133,7 +131,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0;
+    margin-bottom: 0.5rem;
 
     &-line {
         flex: auto;
