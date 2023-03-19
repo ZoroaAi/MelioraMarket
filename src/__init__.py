@@ -1,9 +1,11 @@
 import json
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from .models import Product
+from .models import Product, User
 from .extensions import db
+from flask_login import LoginManager
+
+login_manager = LoginManager()
 
 DB_NAME = 'database.db'
 
@@ -12,8 +14,10 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'superSecretKey'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    
     db.init_app(app)
     migrate = Migrate(app, db)
+    login_manager.init_app(app)
     
     with app.app_context():
         db.create_all()
@@ -44,3 +48,8 @@ def add_products_from_json(app):
             p = Product(title=product['title'], price = product['price'],img_url=product['img_url'], market_name=product['market'])
             db.session.add(p)
         db.session.commit()
+        
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))

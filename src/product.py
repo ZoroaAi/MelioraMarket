@@ -1,6 +1,6 @@
 import json
-import math
 from flask import Blueprint, redirect ,render_template, request, flash, session, url_for
+from flask_login import current_user, login_required, UserMixin
 from . import db
 from .models import Basket, User, Product, BasketItem
 from flask_paginate import Pagination, get_page_args 
@@ -10,6 +10,7 @@ product = Blueprint('product', __name__)
 with open('src/scraped_data/total_data.json') as json_file:
         data = json.load(json_file)
 
+# Browse Page -- Functions: Search / Pagination --
 @product.route('/browse', methods=['GET','POST'])
 def browse():
     page = request.args.get('page', 1, type=int)
@@ -18,19 +19,13 @@ def browse():
     end = start+per_page
     query = request.args.get('title')
     if query:
-        # results = filter(lambda x: query.lower() in x['title'].lower(), data)
-        # products = list(results)[start:end]
-        # template = "html_components/card_template.html"
-        # title = f"Search Results for '{query}'"
-        products = Product.query.filter(Product.title.ilike(f'%{query}%')).paginate(page, per_page, error_out=False)
+        products = Product.query.filter(Product.title.ilike(f'%{query}%')).paginate(page=page, per_page=per_page, error_out=False)
+        title = f"Search Results for '{query}'"
     else:
-        # products = data[start:end]
-        # template = "html_components/card_template.html"
-        # title = "Browse"
-        products = Product.query.paginate(page, per_page, error_out = False)
+        products = Product.query.paginate(page=page, per_page=per_page, error_out=False)
         title = 'Browse'
     template = "html_components/card_template.html"
-    pagination = Pagination(page=page, total=len(data), per_page=per_page, css_framework='bootstrap4')
+    pagination = Pagination(page=page, total=products.total, per_page=per_page, css_framework='bootstrap4')
     return render_template('browse.html', data=products.items, pagination=pagination, title=title, template=template, query=query)
 
 
@@ -40,35 +35,38 @@ def get_products_for_page(page, per_page):
     end_idx = start_idx + per_page
     return data[start_idx:end_idx]
 
-@product.route('/add_to_basket', methods = ['POST'])
-def add_to_basket():
-    product_id = request.form.get('product_id')
-    if 'user_id' in session:
-        user_id = session['user_id']
-    
-    # Add the product to he user's basket
-    basket = get_basket_for_user(user_id)
-    add_product(basket, product_id)
-    return redirect(url_for('browse.html'))
 
-def get_basket_for_user(user_id):
-    user = User.query.get(user_id)
-    if user is None:
-        return None
-    basket = Basket.query.filter_by(user_id=user.id).order_by(Basket.created_at.desc()).first()
-    if basket is None:
-        basket = Basket(user_id=user.id)
+# Add To Basket Function
+@product.route('/add_to_basket/int:<product_id>', methods = ['POST'])
+@login_required
+def add_to_basket(product_id):
+    # Get or create the current user's basket
+    basket = Basket.query.filter_by(user_id=current_user.id).first()
+    if not basket:
+        basket = Basket(user_id=current_user.id)
         db.session.add(basket)
         db.session.commit()
-    return basket
 
-def add_product(basket, product_id):
-    # Adds given product to the basket
-    item = BasketItem.query.filter_by(basket_id=basket.id, product_id=product_id).first()
-    if item is None:
-        # Add the product if not already in the basket
-        item = BasketItem(basket_id=basket.id, product_id=product_id)
-        db.session.add(item)
+    # Check if the product is already in the basket
+    basket_item = BasketItem.query.filter_by(basket_id=basket.id, product_id=product_id).first()
+    if basket_item:
+        # Increment the quantity of the existing product in the basket
+        basket_item.quantity += 1
     else:
-        item.quantity += 1
+        # Add the new product to the basket
+        basket_item = BasketItem(basket_id=basket.id, product_id=product_id, quantity=1)
+        db.session.add(basket_item)
+
     db.session.commit()
+    flash('Product added to the basket!', 'success')
+    return redirect(url_for('product.browse'))
+
+# Display Basket
+@product.route('/basket')
+def display_basket():
+    basket = Basket.query.filter_by(user_id=current_user.id).first()
+    if basket:
+        basket_items = BasketItem.query.filter_by(basket_id=basket.id).all()
+    else:
+        basket_items = []
+    return render_template('basket.html', basket_items=basket_items)

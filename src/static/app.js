@@ -5,28 +5,10 @@ import {} from "./scripts/functions/search.mjs";
 hello();
 
 
-// searchBar = document.getElementById('searchBar');
-// searchBar.addEventListener('input', (e) => {
-//     let value = e.target.value;
-//     // Check if input exists and is greater than 0
-//     if (value && value.trim().length > 0){
-//         value. value.trim().toLowerCase();
+// Quantity Price:
+quantity = document.getElementById('item_quantity').value;
+price = document.getElementById('basket_item_price').value;
+price = document.getElementById('item_quantity_price');
 
-//         // Return results that include the value of the search
-//         setDiv(items.filter(item => {
-//             return item.name.includes(value);
-//         }))
-//     }else{
-        
-//     }
-// })
-
-function setDiv(results){
-    for(const item of results){
-        const resultItem= document.createElement('div');
-        resultItem.classList.add('result-item');
-        const text = document.createTextNode(item.title)
-        resultItem.appendChild(text)
-        list.appendChild(resultItem)
-    }
-}
+quantityPrice = quantity * price;
+price.textContent = quantityPrice;
