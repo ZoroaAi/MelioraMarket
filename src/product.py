@@ -18,16 +18,20 @@ def browse():
     end = start+per_page
     query = request.args.get('title')
     if query:
-        results = filter(lambda x: query.lower() in x['title'].lower(), data)
-        products = list(results)[start:end]
-        template = "html_components/card_template.html"
-        title = f"Search Results for '{query}'"
+        # results = filter(lambda x: query.lower() in x['title'].lower(), data)
+        # products = list(results)[start:end]
+        # template = "html_components/card_template.html"
+        # title = f"Search Results for '{query}'"
+        products = Product.query.filter(Product.title.ilike(f'%{query}%')).paginate(page, per_page, error_out=False)
     else:
-        products = data[start:end]
-        template = "html_components/card_template.html"
-        title = "Browse"
+        # products = data[start:end]
+        # template = "html_components/card_template.html"
+        # title = "Browse"
+        products = Product.query.paginate(page, per_page, error_out = False)
+        title = 'Browse'
+    template = "html_components/card_template.html"
     pagination = Pagination(page=page, total=len(data), per_page=per_page, css_framework='bootstrap4')
-    return render_template('browse.html', data=products, pagination=pagination, title=title, template=template, query=query)
+    return render_template('browse.html', data=products.items, pagination=pagination, title=title, template=template, query=query)
 
 
 # Return list of products on current page

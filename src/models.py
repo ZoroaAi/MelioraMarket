@@ -1,9 +1,6 @@
 from datetime import datetime
-import json
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf import FlaskForm
-
-db = SQLAlchemy()
+from .extensions import db
 
 # Database Models
 class User(db.Model):
@@ -50,12 +47,3 @@ class BasketItem(db.Model):
     product_id = db.Column(db.Integer, nullable=False)
     quantity = db.Column(db.Integer, nullable=False, default=1)
 
-
-# Populate Database
-def add_products_from_json():
-    with open('src/scraped_data/total_data.json', 'r') as f:
-        products = json.load(f)
-    for product in products:
-        p = Product(title=product['title'], price = product['price'],img_url=product['img_url'], market_name=product['market'])
-        db.session.commit(p)
-    db.session.commit()
