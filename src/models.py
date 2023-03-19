@@ -10,6 +10,12 @@ class User(db.Model):
     password = db.Column(db.String(150))
     firstName = db.Column(db.String(150))
 
+    @property
+    def is_active(self):
+        return True
+    def get_id(self):
+        return str(self.id)
+
     def __init__(self, email, password, firstName):
         self.email = email
         self.password = password
