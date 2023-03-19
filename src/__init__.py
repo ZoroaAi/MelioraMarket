@@ -3,7 +3,7 @@ from flask import Flask
 from flask_migrate import Migrate
 from .models import Product, User
 from .extensions import db
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 
 login_manager = LoginManager()
 
@@ -28,8 +28,12 @@ def create_app():
     app.register_blueprint(views, url_prefix = '/')
     app.register_blueprint(auth, url_prefix = '/')
     app.register_blueprint(product, url_prefix = '/')
-    
+        
     create_and_populate_db(app)
+    
+    # making the 'current_user' available in all templates
+    app.context_processor(lambda:{'current_user':current_user})
+    
     return app
     
 def create_and_populate_db(app):
