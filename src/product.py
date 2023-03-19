@@ -57,16 +57,7 @@ def add_to_basket(product_id):
         basket_item = BasketItem(basket_id=basket.id, product_id=product_id, quantity=1)
         db.session.add(basket_item)
 
+    # print('Basket Items: '+ [item for item in basket.basket_item])
     db.session.commit()
     flash('Product added to the basket!', 'success')
     return redirect(url_for('product.browse'))
-
-# Display Basket
-@product.route('/basket')
-def display_basket():
-    basket = Basket.query.filter_by(user_id=current_user.id).first()
-    if basket:
-        basket_items = BasketItem.query.filter_by(basket_id=basket.id).all()
-    else:
-        basket_items = []
-    return render_template('basket.html', basket_items=basket_items)

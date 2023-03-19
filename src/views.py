@@ -12,5 +12,12 @@ def home():
 
 
 @views.route('/basket', methods=['GET','POST'])
+@login_required
 def basket():
-    return render_template('basket.html')
+    basket = Basket.query.filter_by(user_id=current_user.id).first()
+    if basket:
+        basket_items = basket.basket_item
+        print('Basket Items:', basket_items) 
+        return render_template('basket.html', basket_items=basket_items)
+    else:
+        return render_template('basket.html')

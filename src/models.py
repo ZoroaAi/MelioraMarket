@@ -15,6 +15,10 @@ class User(db.Model):
         return True
     def get_id(self):
         return str(self.id)
+    def is_authenticated(self):
+        return True
+    def is_anonymous(self):
+        return False
 
     def __init__(self, email, password, firstName):
         self.email = email
