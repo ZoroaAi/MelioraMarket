@@ -35,33 +35,4 @@ content %}
   </div>
 </section>
 
-<script>
-  function updateBasketCalculations() {
-    let totalItems = 0;
-    let totalPrice = 0;
-    $(".card").each(function () {
-      const priceText = $(this).find(".basket_item_price").text().trim();
-      const price = parseFloat(priceText.replace(/[^0-9.]/g, ""));
-      const quantityText = $(this).find(".item_quantity").val().trim();
-      const quantity = parseInt(quantityText) || 0;
-      const itemTotalPrice = price * quantity;
-      $(this).find(".item_quantity_price").text(itemTotalPrice.toFixed(2));
-
-      totalItems += quantity;
-      totalPrice += itemTotalPrice;
-    });
-
-    $("#total_items").text("Total items: " + totalItems);
-    $("#total_price").text("Total price: £" + totalPrice.toFixed(2));
-  }
-
-  $(document).ready(function () {
-    updateBasketCalculations();
-
-    $(".item_quantity").on("input", function () {
-      updateBasketCalculations();
-    });
-  });
-</script>
-
 {% endblock %}
