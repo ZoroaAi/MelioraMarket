@@ -21,3 +21,8 @@ def basket():
         return render_template('basket.html', basket_items=basket_items)
     else:
         return render_template('basket.html')
+
+@views.route('/account', methods=['POST','GET'])
+@login_required
+def account():
+    return render_template('account.html')

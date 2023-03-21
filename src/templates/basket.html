@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% block title %} Basket {% endblock %} {%block
 content %}
 
+{% set total_price = 0 %}
+{% set total_items = 0 %}
+
 <section class="h-100">
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -9,7 +12,7 @@ content %}
           <h1 class="fw-normal mb-0">Shopping Cart</h1>
           <div>
             <p class="mb-0">
-              <span class="text-muted">Sort by:</span>
+              <span class="sort_basket">Sort by:</span>
               <a href="#!" class="text-body"
                 >price <i class="fas fa-angle-down mt-1"></i
               ></a>
@@ -17,11 +20,48 @@ content %}
           </div>
         </div>
 
-        {% include 'html_components/basket_card_template.html' %}
-        
+        {% for item in basket_items %} {% set total_items = total_items +
+        item.quantity %} {% set total_price = total_price + (item.product.price
+        * item.quantity) %} {% include'html_components/basket_card_template.html' %} {% endfor %}
+
+        <div class="d-flex justify-content-end">
+          <h5>Total items: {{ total_items }}</h5>
+        </div>
+        <div class="d-flex justify-content-end">
+          <h5>Total price: £{{ total_price }}</h5>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  function updateBasketCalculations() {
+    let totalItems = 0;
+    let totalPrice = 0;
+    $(".card").each(function () {
+      const priceText = $(this).find(".basket_item_price").text().trim();
+      const price = parseFloat(priceText.replace(/[^0-9.]/g, ""));
+      const quantityText = $(this).find(".item_quantity").val().trim();
+      const quantity = parseInt(quantityText) || 0;
+      const itemTotalPrice = price * quantity;
+      $(this).find(".item_quantity_price").text(itemTotalPrice.toFixed(2));
+
+      totalItems += quantity;
+      totalPrice += itemTotalPrice;
+    });
+
+    $("#total_items").text("Total items: " + totalItems);
+    $("#total_price").text("Total price: £" + totalPrice.toFixed(2));
+  }
+
+  $(document).ready(function () {
+    updateBasketCalculations();
+
+    $(".item_quantity").on("input", function () {
+      updateBasketCalculations();
+    });
+  });
+</script>
 
 {% endblock %}

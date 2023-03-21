@@ -40,12 +40,7 @@ def get_products_for_page(page, per_page):
 @product.route('/add_to_basket/int:<product_id>', methods = ['POST'])
 @login_required
 def add_to_basket(product_id):
-    # Get or create the current user's basket
-    basket = Basket.query.filter_by(user_id=current_user.id).first()
-    if not basket:
-        basket = Basket(user_id=current_user.id)
-        db.session.add(basket)
-        db.session.commit()
+    basket = get_or_create(Basket, user_id=current_user.id)
 
     # Check if the product is already in the basket
     basket_item = BasketItem.query.filter_by(basket_id=basket.id, product_id=product_id).first()
@@ -57,7 +52,15 @@ def add_to_basket(product_id):
         basket_item = BasketItem(basket_id=basket.id, product_id=product_id, quantity=1)
         db.session.add(basket_item)
 
-    # print('Basket Items: '+ [item for item in basket.basket_item])
     db.session.commit()
     flash('Product added to the basket!', 'success')
     return redirect(url_for('product.browse'))
+
+# Get or Create Pattern
+def get_or_create(model, **kwargs):
+    instance = model.query.filter_by(**kwargs).first()
+    if not instance:
+        instance = model(**kwargs)
+        db.session.add(instance)
+        db.session.commit()
+    return instance
