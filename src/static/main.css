@@ -342,6 +342,30 @@ h1 {
   color: #F6B93B;
 }
 
+#price-colour {
+  color: #212121;
+}
+
+.cart_button {
+  border: 1px solid black !important;
+}
+
+.quantity-form {
+  margin-bottom: 1em;
+  display: flex;
+  flex-direction: row;
+}
+.quantity-form .item_quantity {
+  width: 3em;
+}
+.quantity-form button {
+  margin: 0 0.5em;
+}
+
+.item-subtotal {
+  font-weight: bold;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));

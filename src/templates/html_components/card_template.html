@@ -10,6 +10,7 @@
       <h5 class="product-card__title">{{ item['title'] }}</h5>
       <p id="product-card__price">£ {{ item['price'] }}</p>
       <form class="to-basket-form" method="POST" action="{{url_for('product.add_to_basket', product_id=item['id'])}}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <input type="hidden" name="product_id" value="{{ item['id'] }}" />
         <p id="product-card__price">{{ item['market_name'].capitalize() }}</p>
         <button type="submit" class="product-card__button">Add to cart</button>

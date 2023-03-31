@@ -1,9 +1,6 @@
 {% extends 'base.html' %} {% block title %} Basket {% endblock %} {%block
 content %}
 
-{% set total_price = 0 %}
-{% set total_items = 0 %}
-
 <section class="h-100">
   <div class="container h-100 py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -20,15 +17,13 @@ content %}
           </div>
         </div>
 
-        {% for item in basket_items %} {% set total_items = total_items +
-        item.quantity %} {% set total_price = total_price + (item.product.price
-        * item.quantity) %} {% include'html_components/basket_card_template.html' %} {% endfor %}
+        {% for item in basket_items %}
+          {% include'html_components/basket_card_template.html' %}
+        {% endfor %}
 
-        <div class="d-flex justify-content-center">
-          <h5>Total items: {{ total_items }}</h5>
-        </div>
-        <div class="d-flex justify-content-center">
-          <h5>Total price: £{{ total_price }}</h5>
+        <div class="d-flex justify-content-center" style="display: flex; flex-direction:row;">
+          <h5 style="margin:0 2em;">Total items: {{ total_items }} </h5>
+          <h5>Total price: £ {{ total_price }} </h5>
         </div>
       </div>
     </div>

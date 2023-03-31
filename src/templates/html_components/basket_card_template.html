@@ -8,32 +8,43 @@
           alt="Cotton T-shirt"
         />
       </div>
-      <div class="col-md-3 col-lg-3 col-xl-3">
-        <p class="lead fw-normal mb-2">{{ item.product.title }}</p>
-        <p>Price: £{{ item.product.price }}</p>
-        <label for="item_quantity_{{ item.id }}">Quantity: </label>
-        <div class="quantity-info" style="display: flex; flex-direction: row;">
-          <form method="POST" action="{{ url_for('product.update_basket_item', basket_item_id=item.id) }}">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <input
-              type="number"
-              name="item_quantity"
-              id="item_quantity_{{ item.id }}"
-              class="item_quantity"
-              value="{{ item.quantity }}"
-              min="1"
-            >
-            <button class="btn btn-outline-secondary increase-quantity" type="submit" name="action" value="update">Update</button>
-            <button class="btn btn-outline-secondary remove-item" type="submit" name="action" value="remove">Remove</button>
-          </form>
+      <div class="col-md-7 col-lg-7 col-md-7">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <p class="lead fw-normal mb-2" style="color:#212121;">{{ item.product.title }}</p>
+          </div>
+          <div class="col-md-12">
+            <p style="color: #F6B93B;">Price: <span id="price-colour">£{{ item.product.price }}</span></p>
+          </div>
         </div>
       </div>
-      
-      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6>£<h5 class="mb-0 item-subtotal">{{ item.product.price * item.quantity }}</h5></h6>
-      </div>
-      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-        <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
+      <div class="col-md-3 col-lg-3 col-md-3">
+        <div class="row align-items-center justify-content-end">
+          <div class="col-md-12 quantity-info">
+            <form method="POST" class="quantity-form" action="{{ url_for('product.update_basket_item', basket_item_id=item.id) }}">
+              <label for="item_quantity_{{ item.id }}" >Quantity: </label>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <input
+                type="number"
+                name="item_quantity"
+                id="item_quantity_{{ item.id }}"
+                class="item_quantity"
+                value="{{ item.quantity }}"
+                min="1"
+              >
+              <button class="btn cart_button increase-quantity" type="submit" name="action" value="update">Update</button>
+            </form>
+          </div>
+          <div class="col-md-12">
+            <h6>Total Price: £<span class="mb-0 item-subtotal"> {{ item.product.price * item.quantity }}</span></h6>
+          </div>
+          <div class="col-md-12 mt-2">
+            <form method="POST" action="{{ url_for('product.update_basket_item', basket_item_id=item.id) }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <button class="btn btn-outline-danger btn-sm" type="submit" name="action" value="remove">Remove</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

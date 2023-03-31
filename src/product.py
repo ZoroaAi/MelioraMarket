@@ -36,7 +36,7 @@ def get_products_for_page(page, per_page):
 
 
 # Add To Basket Function
-@product.route('/add_to_basket/int:<product_id>', methods = ['POST'])
+@product.route('/add_to_basket/<int:product_id>', methods = ['POST'])
 @login_required
 def add_to_basket(product_id):
     basket = get_or_create(Basket, user_id=current_user.id)
@@ -54,6 +54,7 @@ def add_to_basket(product_id):
     db.session.commit()
     flash('Product added to the basket!', 'success')
     return redirect(url_for('product.browse'))
+
 
 # Get or Create Pattern
 def get_or_create(model, **kwargs):
@@ -103,3 +104,4 @@ def change_quantity(new_quantity):
     except ValueError:
         flash("Invalid quantity", "danger")
         return redirect(url_for('views.basket'))
+    

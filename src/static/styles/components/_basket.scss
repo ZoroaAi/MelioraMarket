@@ -7,3 +7,30 @@ section{
 h1{
     color: variables.$primary;
 }
+
+#price-colour{
+    color: variables.$dark;
+}
+
+.cart_button{
+    border: 1px solid black !important;
+}
+
+.quantity-form{
+    margin-bottom: 1em;
+
+    display: flex;
+    flex-direction: row;
+
+    .item_quantity{
+        width: 3em;
+    }
+    button{
+        margin: 0 0.5em;
+    }
+    
+}
+
+.item-subtotal{
+    font-weight: bold;
+}
