@@ -354,6 +354,7 @@ h1 {
   margin-bottom: 1em;
   display: flex;
   flex-direction: row;
+  align-items: baseline;
 }
 .quantity-form .item_quantity {
   width: 3em;

@@ -41,7 +41,9 @@
           <div class="col-md-12 mt-2">
             <form method="POST" action="{{ url_for('product.update_basket_item', basket_item_id=item.id) }}">
               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              <button class="btn btn-outline-danger btn-sm" type="submit" name="action" value="remove">Remove</button>
+              <button class="btn cart_button btn-sm" type="submit" name="action" value="remove">
+                <i class="fa-solid fa-trash" style="color:rgb(196, 22, 22);"></i>
+              </button>
             </form>
           </div>
         </div>
