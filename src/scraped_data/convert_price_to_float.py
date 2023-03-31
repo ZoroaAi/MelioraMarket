@@ -20,5 +20,5 @@ for obj in data:
         obj['price'] = convert_price(price_str)
 
 # Save the modified data back to the file
-with open('src/scraped_data/total_data.json', 'w') as f:
+with open('src/scraped_data/total_data1.json', 'w') as f:
     json.dump(data, f, indent=2)

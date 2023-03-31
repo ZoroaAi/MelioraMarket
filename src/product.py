@@ -1,5 +1,5 @@
 import json
-from flask import Blueprint, redirect ,render_template, request, flash, session, url_for
+from flask import Blueprint, jsonify, redirect ,render_template, request, flash, session, url_for
 from flask_login import current_user, login_required, UserMixin
 from . import db
 from .models import Basket, User, Product, BasketItem
@@ -64,3 +64,25 @@ def get_or_create(model, **kwargs):
         db.session.add(instance)
         db.session.commit()
     return instance
+
+
+@product.route('/update_basket_item/<int:basket_item_id>', methods=['POST'])
+@login_required
+def update_basket_item_id(basket_item_id):
+    new_quantity = request.form.get('quantity')
+    
+    try:
+        new_quantity = int(new_quantity)
+        if new_quantity <=0:
+            raise ValueError()
+    except ValueError:
+        return jsonify(success=False,message="Basket item not found")
+    
+    basket_item = BasketItem.query.get(basket_item_id)
+    if not basket_item or basket_item.basket.user_id != current_user.id:
+        return jsonify(success=False, message="Basket item not found")
+    
+    basket_item.quantity = new_quantity
+    db.session.commit()
+    
+    return jsonify(success=True)

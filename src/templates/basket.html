@@ -24,15 +24,16 @@ content %}
         item.quantity %} {% set total_price = total_price + (item.product.price
         * item.quantity) %} {% include'html_components/basket_card_template.html' %} {% endfor %}
 
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-center">
           <h5>Total items: {{ total_items }}</h5>
         </div>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-center">
           <h5>Total price: £{{ total_price }}</h5>
         </div>
       </div>
     </div>
   </div>
 </section>
+<script type="module" src="{{url_for('static', filename='scripts/server.js')}}"></script>
 
 {% endblock %}

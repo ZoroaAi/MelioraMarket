@@ -12,11 +12,23 @@
         <p class="lead fw-normal mb-2">{{ item.product.title }}</p>
         <p>Price: £{{ item.product.price }}</p>
         <label for="item_quantity">Quantity: </label>
-        <input type="number" name="item_quantity" id="item_quantity" class="item_quantity" value="{{item.quantity}}" readonly>
+        <div class="quantity-info" style="display: flex; flex-direction: row;">
+          <button class="btn btn-outline-secondary decrease-quantity" type="button">-</button>
+          <input 
+            type="number" 
+            name="item_quantity" 
+            id="item_quantity" 
+            class="item_quantity" 
+            value="{{item.quantity}}" 
+            data-bi-id="{{item.id}}" 
+            onchange="updateBasketItem(this.dataset.biId,this)"
+            readonly>
+          <button class="btn btn-outline-secondary increase-quantity" type="button">+</button>
+        </div>
       </div>
       
       <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-        <h6>£<h5 class="mb-0">{{ item.product.price * item.quantity }}</h5></h6>
+        <h6>£<h5 class="mb-0 item-subtotal">{{ item.product.price * item.quantity }}</h5></h6>
       </div>
       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
         <a href="#!" class="text-danger"><i class="fas fa-trash fa-lg"></i></a>
