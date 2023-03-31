@@ -65,30 +65,41 @@ def get_or_create(model, **kwargs):
     return instance
 
 
+# Update Quantity and Remove Item from Basket
 @product.route('/update_basket_item/<int:basket_item_id>', methods=['POST'])
 @login_required
 def update_basket_item(basket_item_id):
-    new_quantity = request.form.get('item_quantity')
+    action =request.form.get('action')
+    
+    basket_item = BasketItem.query.get(basket_item_id)
+    if not basket_item or basket_item.basket.user_id != current_user.id:
+        flash("Basket item not found", "danger")
+        return redirect(url_for('views.basket'))
 
+    # Change Quantity of Basket Item
+    if action == "update":
+        new_quantity = request.form.get('item_quantity')
+        change_quantity(new_quantity)
+        basket_item.quantity = new_quantity
+    elif action == "remove":
+        db.session.delete(basket_item)
+        flash("Item removed from basket","success")
+       
+    db.session.commit()
+
+    return redirect(url_for('views.basket'))
+
+
+def change_quantity(new_quantity):
     if not new_quantity:
         flash("Quantity not provided", "danger")
         return redirect(url_for('product.basket'))
 
     try:
         new_quantity = int(new_quantity)
+        flash("Quantity updated successfully", "success")
         if new_quantity <= 0:
             raise ValueError()
     except ValueError:
         flash("Invalid quantity", "danger")
         return redirect(url_for('views.basket'))
-
-    basket_item = BasketItem.query.get(basket_item_id)
-    if not basket_item or basket_item.basket.user_id != current_user.id:
-        flash("Basket item not found", "danger")
-        return redirect(url_for('views.basket'))
-
-    basket_item.quantity = new_quantity
-    db.session.commit()
-    flash("Quantity updated successfully", "success")
-
-    return redirect(url_for('views.basket'))
