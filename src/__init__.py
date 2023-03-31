@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from .models import Product, User
 from .extensions import db
 from flask_login import LoginManager, current_user
+from flask_wtf.csrf import CSRFProtect
 
 login_manager = LoginManager()
 
@@ -18,6 +19,7 @@ def create_app():
     db.init_app(app)
     migrate = Migrate(app, db)
     login_manager.init_app(app)
+    csrf = CSRFProtect(app)
     
     with app.app_context():
         db.create_all()

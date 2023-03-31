@@ -4,6 +4,7 @@ from flask_login import current_user, login_required, UserMixin
 from . import db
 from .models import Basket, User, Product, BasketItem
 from flask_paginate import Pagination, get_page_args 
+from flask_wtf import FlaskForm
 
 product = Blueprint('product', __name__)
 
@@ -15,8 +16,6 @@ with open('src/scraped_data/total_data.json') as json_file:
 def browse():
     page = request.args.get('page', 1, type=int)
     per_page = 24
-    start = (page-1)*per_page
-    end = start+per_page
     query = request.args.get('title')
     if query:
         products = Product.query.filter(Product.title.ilike(f'%{query}%')).paginate(page=page, per_page=per_page, error_out=False)
@@ -68,21 +67,28 @@ def get_or_create(model, **kwargs):
 
 @product.route('/update_basket_item/<int:basket_item_id>', methods=['POST'])
 @login_required
-def update_basket_item_id(basket_item_id):
-    new_quantity = request.form.get('quantity')
-    
+def update_basket_item(basket_item_id):
+    new_quantity = request.form.get('item_quantity')
+
+    if not new_quantity:
+        flash("Quantity not provided", "danger")
+        return redirect(url_for('product.basket'))
+
     try:
         new_quantity = int(new_quantity)
-        if new_quantity <=0:
+        if new_quantity <= 0:
             raise ValueError()
     except ValueError:
-        return jsonify(success=False,message="Basket item not found")
-    
+        flash("Invalid quantity", "danger")
+        return redirect(url_for('views.basket'))
+
     basket_item = BasketItem.query.get(basket_item_id)
     if not basket_item or basket_item.basket.user_id != current_user.id:
-        return jsonify(success=False, message="Basket item not found")
-    
+        flash("Basket item not found", "danger")
+        return redirect(url_for('views.basket'))
+
     basket_item.quantity = new_quantity
     db.session.commit()
-    
-    return jsonify(success=True)
+    flash("Quantity updated successfully", "success")
+
+    return redirect(url_for('views.basket'))

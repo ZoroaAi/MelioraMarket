@@ -11,19 +11,20 @@
       <div class="col-md-3 col-lg-3 col-xl-3">
         <p class="lead fw-normal mb-2">{{ item.product.title }}</p>
         <p>Price: £{{ item.product.price }}</p>
-        <label for="item_quantity">Quantity: </label>
+        <label for="item_quantity_{{ item.id }}">Quantity: </label>
         <div class="quantity-info" style="display: flex; flex-direction: row;">
-          <button class="btn btn-outline-secondary decrease-quantity" type="button">-</button>
-          <input 
-            type="number" 
-            name="item_quantity" 
-            id="item_quantity" 
-            class="item_quantity" 
-            value="{{item.quantity}}" 
-            data-bi-id="{{item.id}}" 
-            onchange="updateBasketItem(this.dataset.biId,this)"
-            readonly>
-          <button class="btn btn-outline-secondary increase-quantity" type="button">+</button>
+          <form method="POST" action="{{ url_for('product.update_basket_item', basket_item_id=item.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input
+              type="number"
+              name="item_quantity"
+              id="item_quantity_{{ item.id }}"
+              class="item_quantity"
+              value="{{ item.quantity }}"
+              min="1"
+            >
+            <button class="btn btn-outline-secondary increase-quantity" type="submit">Update</button>
+          </form>
         </div>
       </div>
       

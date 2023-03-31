@@ -11,16 +11,7 @@
       <p id="product-card__price">£ {{ item['price'] }}</p>
       <form class="to-basket-form" method="POST" action="{{url_for('product.add_to_basket', product_id=item['id'])}}">
         <input type="hidden" name="product_id" value="{{ item['id'] }}" />
-        <div class="product-card__quantity">
-          <small><label for="quantity">Quantity: </label></small>
-          <input
-            type="number"
-            name="quantity"
-            id="quantity"
-            value="1"
-            min="1"
-          />
-        </div>
+        <p id="product-card__price">{{ item['market_name'].capitalize() }}</p>
         <button type="submit" class="product-card__button">Add to cart</button>
       </form>
     </div>
