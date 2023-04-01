@@ -1,3 +1,4 @@
+import random
 from flask import Blueprint, redirect ,render_template, request, flash, session, url_for
 from flask_login import login_required, current_user
 from . import db
@@ -36,4 +37,29 @@ def calculate_totals(basket_items):
 @views.route('/account', methods=['POST','GET'])
 @login_required
 def account():
-    return render_template('account.html')
+    total_basket_items, total_basket_price = get_totals_for_user(current_user.id)
+    
+    profile_pics = [
+        "images/profile_pic_woman.svg",
+        "images/profile_pic_woman.svg",
+    ]
+    random_profile_pic = random.choice(profile_pics)
+    
+    return render_template('account.html', total_basket_items=total_basket_items, total_basket_price=total_basket_price,profile_pic=random_profile_pic)
+
+# Get calculated totals from user
+def get_totals_for_user(user_id):
+    basket = Basket.query.filter_by(user_id=user_id).first()
+    if basket:
+        basket_item = basket.basket_item
+        return calculate_totals(basket_item)
+    return 0, 0
+
+# Assign a random profile pic between male/female
+def random_profile_pic():
+    profile_pics = [
+        "images/profile_pic_woman.svg",
+        "images/profile_pic_woman.svg",
+    ]
+    random_profile_pic = random.choice(profile_pics)
+    return random_profile_pic

@@ -1,13 +1,13 @@
 {% block nav%}
   <div class="nav-wrapper">
     <nav class="navbar">
-      <img src="#" alt="Company Logo">
+      <a href="{{url_for('views.home')}}"><img src="" alt="Company Logo"></a>
       <div class="menu-toggle" id="mobile-menu">
         <span class="bar"></span>
         <span class="bar"></span>
         <span class="bar"></span>
       </div>
-      <ul class="nav no-search">
+      <ul class="nav">
         <li class="nav-item"><a id="home" href="{{url_for('views.home')}}">Home</a></li>
         <li class="nav-item"><a id="browse" href="{{url_for('product.browse')}}">Browse</a></li>
         {% if current_user.is_authenticated %}
