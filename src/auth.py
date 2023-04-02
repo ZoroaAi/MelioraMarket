@@ -1,5 +1,4 @@
 import re
-from . import bcrypt, limiter
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from . import db
@@ -28,7 +27,6 @@ def login():
 email_regex = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
 
 @auth.route('/sign-up', methods=['GET','POST'])
-@limiter.limit("5/minute")  # Limit to 5 requests per minute
 def sign_up():
     # Form Validation
     if request.method.lower() == 'post':
@@ -52,8 +50,7 @@ def sign_up():
             flash('Password must be longer than 6 characters', category='Error')
         else:
             # Adding user to database:
-            hashed_password = bcrypt.generate_password_hash(password1).decode('utf-8')
-            new_user = User(email=email, firstName=firstName, password = hashed_password)
+            new_user = User(email=email, firstName=firstName, password = generate_password_hash(password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember= True)

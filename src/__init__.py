@@ -5,8 +5,8 @@ from .models import Product, User
 from .extensions import db
 from flask_login import LoginManager, current_user
 from flask_wtf.csrf import CSRFProtect
-from flask_limiter import Limiter
 from flask_bcrypt import Bcrypt
+from flask_limiter import Limiter
 
 login_manager = LoginManager()
 
@@ -22,8 +22,11 @@ def create_app():
     migrate = Migrate(app, db)
     login_manager.init_app(app)
     csrf = CSRFProtect(app)
-    limiter = Limiter(app)
     bcrypt = Bcrypt(app)
+    limiter = Limiter(app)
+    
+    app.extensions['bcrypt'] = bcrypt
+    app.extensions['limiter'] = limiter
     
     with app.app_context():
         db.create_all()
