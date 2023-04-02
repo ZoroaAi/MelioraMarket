@@ -14,7 +14,7 @@
         <button class="" type="submit">
           <i class="bi bi-search"></i>
         </button>
-        <button type="submit" data-bs-toggle="modal" data-bs-target="#filterModal">
+        <button type="submit">
           <i class="bi bi-funnel-fill"></i>
         </button>
       </form>
@@ -54,35 +54,6 @@
     {% endif %}
   </div>
 {% endif %}
-
-<div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="filterModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="filterModalLabel">Filter Products</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form method="POST" action="">
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="min_price">Minimum Price:</label>
-            <input type="number" class="form-control" id="min_price" name="min_price">
-          </div>
-          <div class="form-group">
-            <label for="max_price">Maximum Price:</label>
-            <input type="number" class="form-control" id="max_price" name="max_price">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
-          <button type="submit" class="btn btn-primary">Apply Filters</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
 
 
 
