@@ -23,8 +23,9 @@ def login():
                 flash('Incorrect Password, Try Again', category='Error')
     return render_template('/login.html', user=current_user)
 
-# Email validation regex
+# Email & Password validation regex
 email_regex = re.compile(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
+password_regex = re.compile(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$')
 
 @auth.route('/sign-up', methods=['GET','POST'])
 def sign_up():
@@ -46,8 +47,8 @@ def sign_up():
             flash('First Name must be longer than 2 characters', category='Error')
         elif password1 != password2:
             flash('Passwords does not match', category='Error')
-        elif len(password1) < 7:
-            flash('Password must be longer than 6 characters', category='Error')
+        elif not password_regex.match(password1):
+            flash('Password must be at least 8 characters, contain one uppercase letter, one lowercase letter, one digit and one special character', category='Error')
         else:
             # Adding user to database:
             new_user = User(email=email, firstName=firstName, password = generate_password_hash(password1, method='sha256'))
