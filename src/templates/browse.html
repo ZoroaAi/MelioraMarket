@@ -1,5 +1,5 @@
-{% extends 'base.html'%} {% block title %} Browse {% endblock %} 
-{% block content %}
+{% extends 'base.html'%} {% block title %} Browse {% endblock %} {% block
+content %}
 <div class="container">
   <div class="row height d-flex justify-content-center align-items-center">
     <div class="col-md-6">
@@ -14,47 +14,87 @@
         <button class="" type="submit">
           <i class="bi bi-search"></i>
         </button>
-        <button type="submit">
-          <i class="bi bi-funnel-fill"></i>
-        </button>
       </form>
     </div>
   </div>
 </div>
 
+<form
+  action="{{ url_for('product.browse') }}"
+  method="GET"
+  class="search-filter mb-3"
+>
+  <div class="row">
+    <div class="col">
+      <label for="price_order" class="form-label">Price:</label>
+      <select class="form-select" id="price_order" name="price_order">
+        <option value="">Select Price Order</option>
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
+      </select>
+    </div>
+    <div class="col">
+      <label class="form-label">Market Name:</label>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Tesco" id="market_tesco" name="markets">
+        <label class="form-check-label" for="market_tesco">
+          Tesco
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="Morrisons" id="market_morrisons" name="markets">
+        <label class="form-check-label" for="market_morrisons">
+          Morrisons
+        </label>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mt-2">Filter</button>
+</form>
+
 <div class="browse-cards container px-4" id="custom-cards">
   <div
     class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5"
-    id="inject-cards">
+    id="inject-cards"
+  >
     {% include 'html_components/card_template.html'%}
   </div>
 </div>
 
 <!-- Pagination -->
 {% if pagination.pages %}
-  <div class="pagination justify-content-center mb-4">
-    {% if pagination.has_prev %}
-      <a class="pagination-outline me-2" href="{{ url_for('product.browse', page=pagination.prev_num) }}">Previous</a><p> | </p>
-    {% else %}
-      <span class="pagination-outline me-2">Previous</span><p> | </p>
-    {% endif %}
-    {% for page_num in pagination.pages %}
-      {% if page_num %}
-        {% if page_num != pagination.page %}
-          <a class="pagination-outline me-2" href="{{ url_for('product.browse', page=page_num) }}">{{ page_num }}</a>
-        {% else %}
-          <span class="pagination-outline selected-pagination me-2">{{ page_num }}</span>
-        {% endif %}
-      {% endif %}
-    {% endfor %}
-    {% if pagination.has_next %}
-      <p> | </p><a class="pagination-outline" href="{{ url_for('product.browse', page=pagination.next_num) }}">Next</a>
-    {% else %}
-      <p> | </p><span class="pagination-outline">Next</span>
-    {% endif %}
-  </div>
-{% endif %}
-
-
-
-{% endblock %}
+<div class="pagination justify-content-center mb-4">
+  {% if pagination.has_prev %}
+  <a
+    class="pagination-outline me-2"
+    href="{{ url_for('product.browse', page=pagination.prev_num) }}"
+    >Previous</a
+  >
+  <p>|</p>
+  {% else %}
+  <span class="pagination-outline me-2">Previous</span>
+  <p>|</p>
+  {% endif %} {% for page_num in pagination.pages %} {% if page_num %} {% if
+  page_num != pagination.page %}
+  <a
+    class="pagination-outline me-2"
+    href="{{ url_for('product.browse', page=page_num) }}"
+    >{{ page_num }}</a
+  >
+  {% else %}
+  <span class="pagination-outline selected-pagination me-2"
+    >{{ page_num }}</span
+  >
+  {% endif %} {% endif %} {% endfor %} {% if pagination.has_next %}
+  <p>|</p>
+  <a
+    class="pagination-outline"
+    href="{{ url_for('product.browse', page=pagination.next_num) }}"
+    >Next</a
+  >
+  {% else %}
+  <p>|</p>
+  <span class="pagination-outline">Next</span>
+  {% endif %}
+</div>
+{% endif %} {% endblock %}

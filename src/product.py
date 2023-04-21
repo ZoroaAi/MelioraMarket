@@ -17,14 +17,27 @@ def browse():
     page = request.args.get('page', 1, type=int)
     per_page = 24
     query = request.args.get('title')
+    price_order = request.args.get('price_order')
+    markets = request.args.getlist('markets')
+
+    products_query = Product.query
+
     if query:
-        products = Product.query.filter(Product.title.ilike(f'%{query}%')).paginate(page=page, per_page=per_page, error_out=False)
-        title = f"Search Results for '{query}'"
-    else:
-        products = Product.query.paginate(page=page, per_page=per_page, error_out=False)
-        title = 'Browse'
+        products_query = products_query.filter(Product.title.ilike(f'%{query}%'))
+
+    if price_order == 'asc':
+        products_query = products_query.order_by(Product.price.asc())
+    elif price_order == 'desc':
+        products_query = products_query.order_by(Product.price.desc())
+
+    if markets:
+        products_query = products_query.filter(Product.market_name.in_(markets))
+
+    products = products_query.paginate(page=page, per_page=per_page, error_out=False)
+
+    title = 'Browse'
     template = "html_components/card_template.html"
-    pagination = Pagination(page=page, total=products.total, per_page=per_page, css_framework='bootstrap4')
+    pagination = Pagination(page=page, total=products_query.count(), per_page=per_page, css_framework='bootstrap4')
     return render_template('browse.html', data=products.items, pagination=pagination, title=title, template=template, query=query)
 
 
@@ -33,6 +46,35 @@ def get_products_for_page(page, per_page):
     start_idx = (page - 1) * per_page
     end_idx = start_idx + per_page
     return data[start_idx:end_idx]
+
+
+@product.route('/filtered-browse', methods=['GET'])
+def filtered_browse():
+    page = request.args.get('page', 1, type=int)
+    per_page = 24
+    sort_by = request.args.get('sortBy')
+    market_name = request.args.get('marketName')
+    closest_supermarket = request.args.get('closestSupermarket', 'false') == 'true'
+
+    products_query = Product.query
+
+    if market_name:
+        products_query = products_query.filter(Product.market_name.ilike(f'%{market_name}%'))
+
+    if closest_supermarket:
+        # Logic to filter by the closest supermarket
+        pass
+
+    if sort_by == 'price_low_high':
+        products_query = products_query.order_by(Product.price.asc())
+    elif sort_by == 'price_high_low':
+        products_query = products_query.order_by(Product.price.desc())
+
+    products = products_query.paginate(page=page, per_page=per_page, error_out=False)
+    title = 'Filtered Browse'
+    template = "html_components/card_template.html"
+    pagination = Pagination(page=page, total=products.total, per_page=per_page, css_framework='bootstrap4')
+    return render_template('browse.html', data=products.items, pagination=pagination, title=title, template=template, query=None)
 
 
 # Add To Basket Function
