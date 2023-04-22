@@ -8,9 +8,6 @@ from flask_wtf import FlaskForm
 
 product = Blueprint('product', __name__)
 
-with open('src/scraped_data/total_data.json') as json_file:
-        data = json.load(json_file)
-
 # Browse Page -- Functions: Search / Pagination --
 @product.route('/browse', methods=['GET','POST'])
 def browse():
@@ -41,40 +38,26 @@ def browse():
     return render_template('browse.html', data=products.items, pagination=pagination, title=title, template=template, query=query)
 
 
-# Return list of products on current page
-def get_products_for_page(page, per_page):
-    start_idx = (page - 1) * per_page
-    end_idx = start_idx + per_page
-    return data[start_idx:end_idx]
-
 
 @product.route('/filtered-browse', methods=['GET'])
 def filtered_browse():
     page = request.args.get('page', 1, type=int)
     per_page = 24
-    sort_by = request.args.get('sortBy')
-    market_name = request.args.get('marketName')
-    closest_supermarket = request.args.get('closestSupermarket', 'false') == 'true'
+    price_order = request.args.get('price_order')
 
     products_query = Product.query
 
-    if market_name:
-        products_query = products_query.filter(Product.market_name.ilike(f'%{market_name}%'))
-
-    if closest_supermarket:
-        # Logic to filter by the closest supermarket
-        pass
-
-    if sort_by == 'price_low_high':
+    if price_order == 'asc':
         products_query = products_query.order_by(Product.price.asc())
-    elif sort_by == 'price_high_low':
+    elif price_order == 'desc':
         products_query = products_query.order_by(Product.price.desc())
 
     products = products_query.paginate(page=page, per_page=per_page, error_out=False)
     title = 'Filtered Browse'
-    template = "html_components/card_template.html"
     pagination = Pagination(page=page, total=products.total, per_page=per_page, css_framework='bootstrap4')
-    return render_template('browse.html', data=products.items, pagination=pagination, title=title, template=template, query=None)
+    return render_template('html_components/card_template.html', data=products.items, pagination=pagination, title=title, query=None)
+
+
 
 
 # Add To Basket Function
