@@ -59,7 +59,6 @@ def filtered_browse():
 
 
 
-
 # Add To Basket Function
 @product.route('/add_to_basket/<int:product_id>', methods = ['POST'])
 @login_required
