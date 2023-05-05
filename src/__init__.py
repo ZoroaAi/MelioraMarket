@@ -39,6 +39,7 @@ def create_app():
     app.register_blueprint(product, url_prefix = '/')
         
     create_and_populate_db(app)
+    checkTestLogin(app)
     
     # making the 'current_user' available in all templates
     app.context_processor(lambda:{'current_user':current_user})
@@ -65,3 +66,9 @@ def add_products_from_json(app):
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
+def checkTestLogin(app):
+    with app.app_context():
+        all_users = User.query.all()
+        for user in all_users:
+            print(f"Email: {user.email}, Password (hashed): {user.password}")
