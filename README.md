@@ -4,6 +4,9 @@
 
 Welcome to Meliora Market - the ultimate price comparison website for UK groceries! 🛍️🍎🍞🍅
 
+[Requirement Specification](./Requirement_Specification)
+[Design Specification](./Design_Specification.md)
+
 ## Overview
 
 Meliora Market is a UK supermarket price comparison website designed to help users easily compare prices of various products across multiple supermarkets in the UK. The web application is built using Flask, Python, HTML/CSS, and Selenium. I have also web scraped the market data to ensure that the prices are up-to-date and accurate.
