@@ -22,7 +22,7 @@ The main information this project needs to store are the user information and th
 
 Their relationship to each other is as follows; there will only be one basket per user and the basket will hold the information of the product. The relationship between the basket and product was many to many, however data normalisation was applied to it to reduce data redundancy and improve data integrity. The intermediate table ‘basket_item’ stores the relationship between the two entities while keeping their data separate.
 
-![Database ERD](Documentation/Design/Database%20ERD.jpg) 📊
+![Database ERD](Documentation/Design/Database%20ERD.jpg)
 
 ## User interface 🖼️
 

@@ -16,7 +16,7 @@ Meliora Market is a UK supermarket price comparison website designed to help use
 
 In addition to the features already mentioned, my website offers the following functionality:
 
-- **Browse Products:** Users can browse through products that were web scraped from Tesco and Morrisons
+- :book: **Browse Products:** Users can browse through products that were web scraped from Tesco and Morrisons
 
 - ❤️ **Basket:** Users can create a basket list of their favourite products, allowing them to quickly and easily compare prices across multiple supermarkets.
 
