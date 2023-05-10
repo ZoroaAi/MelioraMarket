@@ -4,9 +4,9 @@
 
 Welcome to Meliora Market - the ultimate price comparison website for UK groceries! 🛍️🍎🍞🍅
 
-[Requirement Specification :wrench:](./Requirement_Specification)
-
 [Design Specification :notebook:](./Design_Specification.md)
+
+[Requirement Specification :wrench:](./Requirement_Specification.md)
 
 ## Overview
 
