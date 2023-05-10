@@ -1,6 +1,6 @@
 # Meliora Market - Price Comparison Website
 
-👋 Welcome to Meliora Market, my final year individual project for the University of Portsmouth! 
+👋 Welcome to Meliora Market, my final year individual project for the University of Portsmouth!
 
 ## Overview
 
@@ -24,7 +24,7 @@ In addition to the features already mentioned, my website offers the following f
 
 To get started with my website, simply clone the repository and run the following command:
 
-```
+```python
 python main.py
 ```
 
