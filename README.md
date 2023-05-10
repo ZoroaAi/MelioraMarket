@@ -1,6 +1,8 @@
 # Meliora Market - Price Comparison Website
 
-👋 Welcome to Meliora Market, my final year individual project for the University of Portsmouth!
+## Introduction
+
+Welcome to Meliora Market - the ultimate price comparison website for UK groceries! 🛍️🍎🍞🍅
 
 ## Overview
 
@@ -10,15 +12,9 @@ Meliora Market is a UK supermarket price comparison website designed to help use
 
 In addition to the features already mentioned, my website offers the following functionality:
 
-- 🗣️ **User Reviews:** Users can leave reviews for products they have purchased, providing valuable feedback to other users and helping them make informed purchasing decisions.
+- **Browse Products:** Users can browse through products that were web scraped from Tesco and Morrisons
 
-- ❤️ **Favourites List:** Users can create a list of their favourite products, allowing them to quickly and easily compare prices across multiple supermarkets.
-
-- 💰 **Price Alerts:** Users can set up price alerts for specific products, so they are notified when the price drops below a certain threshold.
-
-- 🔍 **Recommendations:** Using machine learning algorithms, my website can provide personalised recommendations for products that users might be interested in purchasing based on their browsing and purchasing history.
-
-- ♿ **Accessibility:** My website has been designed with accessibility in mind, ensuring that it is easy to use for people with disabilities.
+- ❤️ **Basket:** Users can create a basket list of their favourite products, allowing them to quickly and easily compare prices across multiple supermarkets.
 
 ## Getting Started
 
@@ -32,7 +28,7 @@ This will start the Flask development server, and you can then access the websit
 
 ## Contact
 
-If you have any questions or feedback about my website, please feel free to contact me at [email address]. I'm always happy to hear from other developers and potential employers!
+If you have any questions or feedback about my website, please feel free to contact me at [sauravkc456@gmail.com] I'm always happy to hear from other developers and potential employers!
 
 ## Acknowledgements
 

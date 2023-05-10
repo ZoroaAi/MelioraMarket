@@ -1,0 +1,21 @@
+# Requirement Specification
+
+## Aim & Objectives
+
+The aim of this project was to create a user-friendly price comparison website using Flask framework, Selenium, and HTML/CSS/JavaScript. We aimed to collect data from supermarkets using web-scraping, provide a user-friendly and responsive design by applying design principles, and implement a secure login system that allows consumers to save their basket list to their account. Although we faced some technical issues that did not allow us to meet all requirements set in Chapter 3, we were able to develop the web application using the required technologies and fulfilled most of the functional and non-functional requirements.
+
+## Project Management
+
+We used an Agile framework called Scrum and JIRA software tool to manage the project lifecycle. The approach was found to be effective in delivering a high-quality product in an iterative and incremental manner. The use of this methodology was suitable and justified for this project as each sprint was mostly successful. Despite the setbacks, we were able to complete the project within the allotted time frame.
+
+## Gantt Chart
+
+The two Gannt charts I created gave a detailed visualization of the timeline set for this project. Despite the effective project approach, there were challenges faced during the development phase which slowed down the progress. The Gantt charts created were slightly off as some functionality is missing from the project. Flask was an unfamiliar framework and the time taken to learn it took longer than expected.
+
+![Project Timeline Gantt Chart](Documentation/Gantt%20Charts/Gantt%20Chart.jpg)
+
+![Technical Gantt Chart](Documentation/Gantt%20Charts/Technical%20Gantt%20Chat.png)
+
+## Conclusion
+
+This project was a great learning experience and has helped us to develop skills in web development and project management. The Scrum methodology helped to break the project down into manageable chunks but there were still some limitations during the project such as time constraints which led to delays and some technical difficulties. We were able to create a price comparison website that allows the users to compare the prices of products from two different supermarkets in the UK (Tesco and Morrisons). It has the potential to provide value to users and make their shopping experience more convenient and cost-effective. This project demonstrated the importance of careful planning, project management, testing and ongoing evaluation to ensure that objectives are achieved.
