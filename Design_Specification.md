@@ -40,4 +40,4 @@ Overall, the decision to switch to black as the primary colour was strategic, cr
 
 ![Product Card Design - Final Iteration](Documentation/Design/style_3/home.jpg "Home Design")
 
-![Product Card Design - Final Iteration](Documentation/Design/style_3/phone.jpg "Mobile Design")
+![Product Card Design - Final Iteration](Documentation/Design/style_3/phone.jpg)
